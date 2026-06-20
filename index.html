@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Torre Security — Guardias de seguridad profesional en Chile</title>
+<meta name="description" content="Guardias de seguridad certificados OS-10, rondas con tecnología de monitoreo y supervisión 24/7 para edificios, empresas y eventos en todo Chile.">
+<meta name="keywords" content="guardias de seguridad, seguridad privada, Chile, OS-10, vigilancia, monitoreo">
+<meta property="og:title" content="Torre Security — Seguridad profesional en Chile">
+<meta property="og:description" content="Personal certificado OS-10, supervisión activa y tecnología de rondas 24/7.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#080d14;
+  --ink-deep:#040810;
+  --ink-soft:#0f1923;
+  --paper:#f8f6f1;
+  --paper-dim:#edeae2;
+  --paper-light:#fdfcfa;
+  --steel:#8a96a8;
+  --steel-dim:#5a6577;
+  --line:rgba(255,255,255,.1);
+  --line-soft:rgba(255,255,255,.05);
+  --line-dark:rgba(0,0,0,.08);
+  --white:#ffffff;
+  --accent:#c8a455;
+  --accent-bright:#ddb966;
+  --accent-dim:#9e7d35;
+  --accent-glow:rgba(200,164,85,.15);
+  --live:#5cb85c;
+  --danger:#e74c3c;
+  --r-sm:6px;
+  --r-md:12px;
+  --r-lg:20px;
+  --r-xl:28px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --ease-bounce:cubic-bezier(.34,1.56,.64,1);
+  --shadow-sm:0 2px 8px rgba(0,0,0,.08);
+  --shadow-md:0 8px 30px rgba(0,0,0,.12);
+  --shadow-lg:0 20px 60px rgba(0,0,0,.2);
+  --shadow-glow:0 0 40px rgba(200,164,85,.2);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;scroll-padding-top:80px;}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;}
+}
+body{
+  background:var(--ink);color:var(--white);
+  font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;transition:color .2s var(--ease);}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:700;letter-spacing:-.02em;line-height:1.1;}
+p{margin:0;}
+ul{list-style:none;}
+::selection{background:var(--accent);color:var(--ink);}
+:focus-visible{outline:2px solid var(--accent-bright);outline-offset:3px;border-radius:3px;}
+
+/* === UTILITIES === */
+.wrap{max-width:1200px;margin:0 auto;padding:0 clamp(20px,4vw,40px);}
+.eyebrow{
+  font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:10px;color:var(--accent);
+}
+.eyebrow::before{content:"";width:24px;height:1.5px;background:var(--accent);border-radius:2px;}
+
+/* === BUTTONS === */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font-family:'Inter',sans-serif;font-weight:600;font-size:14px;letter-spacing:.02em;
+  padding:16px 32px;border-radius:var(--r-sm);cursor:pointer;border:none;
+  transition:all .3s var(--ease);white-space:nowrap;position:relative;overflow:hidden;
+}
+.btn::after{
+  content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.1),transparent);
+  opacity:0;transition:opacity .3s var(--ease);
+}
+.btn:hover::after{opacity:1;}
+.btn-primary{
+  background:linear-gradient(135deg,var(--accent),var(--accent-bright));color:var(--ink);
+  box-shadow:0 4px 20px rgba(200,164,85,.3);
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(200,164,85,.4);}
+.btn-primary:active{transform:translateY(0);}
+.btn-ghost{
+  background:transparent;color:var(--white);
+  border:1.5px solid rgba(255,255,255,.2);backdrop-filter:blur(4px);
+}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+.btn-ghost.on-paper{color:var(--ink);border-color:rgba(0,0,0,.15);}
+.btn-ghost.on-paper:hover{border-color:var(--accent);color:var(--accent-dim);}
+.btn-icon{width:18px;height:18px;}
+
+/* === NAV === */
+header.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(8,13,20,.6);backdrop-filter:blur(20px) saturate(180%);
+  border-bottom:1px solid rgba(255,255,255,.06);
+  transition:all .3s var(--ease);
+}
+header.nav.scrolled{background:rgba(8,13,20,.92);box-shadow:0 4px 30px rgba(0,0,0,.3);}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 clamp(20px,4vw,40px);height:76px;display:flex;align-items:center;justify-content:space-between;}
+.brand{display:flex;align-items:center;gap:14px;z-index:10;}
+.brand-logo{
+  width:42px;height:42px;border-radius:10px;
+  background:linear-gradient(135deg,var(--accent),var(--accent-dim));
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 12px rgba(200,164,85,.25);
+}
+.brand-logo svg{width:22px;height:22px;color:var(--ink);}
+.brand-text{display:flex;flex-direction:column;}
+.brand-name{font-family:'Playfair Display',serif;font-weight:700;font-size:18px;color:var(--white);line-height:1.1;}
+.brand-sub{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;color:var(--steel);font-weight:500;margin-top:2px;}
+nav.links{display:flex;gap:32px;align-items:center;}
+nav.links a{font-size:13.5px;font-weight:500;color:var(--steel);transition:color .2s var(--ease);position:relative;}
+nav.links a:hover{color:var(--white);}
+nav.links a::after{content:"";position:absolute;bottom:-4px;left:0;width:0;height:1.5px;background:var(--accent);transition:width .3s var(--ease);}
+nav.links a:hover::after{width:100%;}
+.nav-cta{display:flex;align-items:center;gap:12px;}
+.nav-phone{
+  display:flex;align-items:center;gap:8px;font-size:13px;color:var(--steel);
+  font-family:'JetBrains Mono',monospace;
+}
+.nav-phone svg{width:16px;height:16px;color:var(--accent);}
+.burger{display:none;background:none;border:0;color:var(--white);padding:8px;cursor:pointer;z-index:10;}
+.burger svg{width:24px;height:24px;}
+
+/* === HERO === */
+.hero{
+  min-height:100vh;display:flex;align-items:center;position:relative;
+  padding:120px 0 80px;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background:
+    linear-gradient(135deg,rgba(8,13,20,.96) 0%,rgba(8,13,20,.7) 40%,rgba(8,13,20,.4) 100%),
+    linear-gradient(180deg,transparent 0%,rgba(8,13,20,.6) 70%,var(--ink) 100%),
+    url('https://images.unsplash.com/photo-1512267372775-a001038ff126?fm=jpg&q=80&w=2600&auto=format&fit=crop') center 30%/cover no-repeat;
+}
+.hero-bg::after{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse at 20% 50%,rgba(200,164,85,.06) 0%,transparent 60%);
+}
+.hero-inner{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:0 clamp(20px,4vw,40px);width:100%;}
+.hero-content{max-width:680px;}
+.badge-live{
+  display:inline-flex;align-items:center;gap:10px;
+  border:1px solid rgba(255,255,255,.1);border-radius:999px;
+  padding:8px 18px 8px 14px;margin-bottom:32px;
+  font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--steel);
+  background:rgba(255,255,255,.03);backdrop-filter:blur(10px);
+}
+.dot-live{width:8px;height:8px;border-radius:50%;background:var(--live);position:relative;}
+.dot-live::after{
+  content:"";position:absolute;inset:-3px;border-radius:50%;
+  background:var(--live);opacity:.4;animation:pulse 2s infinite;
+}
+@keyframes pulse{
+  0%{transform:scale(1);opacity:.4;}
+  70%{transform:scale(2.2);opacity:0;}
+  100%{transform:scale(1);opacity:0;}
+}
+.badge-live b{color:var(--white);font-weight:600;}
+.hero h1{
+  font-size:clamp(42px,6.5vw,82px);line-height:1.0;
+  background:linear-gradient(135deg,var(--white) 0%,rgba(255,255,255,.85) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero h1 em{
+  font-style:normal;
+  background:linear-gradient(135deg,var(--accent-bright),var(--accent));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero .sub{margin-top:28px;font-size:18px;line-height:1.7;color:rgba(255,255,255,.7);max-width:520px;font-weight:300;}
+.hero .cta-row{display:flex;gap:16px;margin-top:44px;flex-wrap:wrap;}
+
+/* Stats strip */
+.stat-strip{margin-top:80px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.stat-card{
+  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--r-md);padding:24px;position:relative;overflow:hidden;
+  backdrop-filter:blur(10px);transition:all .3s var(--ease);
+}
+.stat-card:hover{border-color:rgba(200,164,85,.3);transform:translateY(-2px);box-shadow:var(--shadow-glow);}
+.stat-card::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0;
+  transition:opacity .3s var(--ease);
+}
+.stat-card:hover::before{opacity:1;}
+.stat-card .num{
+  font-family:'Playfair Display',serif;font-size:32px;font-weight:700;
+  background:linear-gradient(135deg,var(--accent-bright),var(--accent));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.stat-card .label{font-size:12px;color:var(--steel);margin-top:6px;font-weight:500;letter-spacing:.02em;}
+
+/* === TRUST BAR === */
+.trust-bar{background:var(--paper-light);padding:48px 0;border-bottom:1px solid var(--line-dark);}
+.trust-inner{display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap;opacity:.6;}
+.trust-inner span{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--steel-dim);text-transform:uppercase;font-weight:600;}
+
+/* === SECTION SHARED === */
+.section-head{max-width:580px;margin-bottom:60px;}
+.section-head h2{font-size:clamp(30px,4vw,46px);margin-top:18px;line-height:1.12;color:inherit;}
+.section-head .desc{margin-top:18px;font-size:17px;color:var(--steel);line-height:1.7;font-weight:300;}
+.on-paper .section-head .desc{color:var(--steel-dim);}
+
+/* === FEATURED SERVICE === */
+.feat-service{background:var(--paper);color:var(--ink);padding:clamp(80px,12vw,140px) 0;}
+.fs-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.fs-photo{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/5;box-shadow:var(--shadow-lg);}
+.fs-photo img{width:100%;height:100%;object-fit:cover;transition:transform 6s var(--ease);}
+.fs-photo:hover img{transform:scale(1.03);}
+.fs-photo .tag{
+  position:absolute;left:16px;bottom:16px;background:rgba(8,13,20,.85);color:var(--white);
+  font-family:'JetBrains Mono',monospace;font-size:11px;padding:8px 14px;border-radius:var(--r-sm);
+  display:flex;align-items:center;gap:8px;backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.1);
+}
+.fs-photo .tag .dot{width:6px;height:6px;border-radius:50%;background:var(--live);}
+.fs-content h2{font-size:clamp(26px,3.2vw,38px);line-height:1.15;margin-top:18px;color:var(--ink);}
+.fs-list{margin-top:28px;display:flex;flex-direction:column;gap:16px;}
+.fs-list div{
+  display:flex;gap:14px;align-items:flex-start;font-size:15px;color:var(--steel-dim);
+  padding:12px 16px;border-radius:var(--r-sm);transition:background .2s var(--ease);line-height:1.5;
+}
+.fs-list div:hover{background:rgba(0,0,0,.03);}
+.fs-list .check{width:20px;height:20px;flex:none;margin-top:1px;color:var(--accent-dim);}
+
+/* Service rows */
+.svc-compact{margin-top:72px;border-top:1px solid var(--line-dark);}
+.svc-row{
+  display:grid;grid-template-columns:48px 1fr;gap:24px;padding:28px 0;
+  border-bottom:1px solid var(--line-dark);align-items:flex-start;
+  transition:all .2s var(--ease);
+}
+.svc-row:hover{padding-left:8px;}
+.svc-row .ico{width:28px;height:28px;color:var(--accent-dim);margin-top:2px;}
+.svc-row h3{font-family:'Inter',sans-serif;font-size:17px;font-weight:700;letter-spacing:0;}
+.svc-row p{margin-top:6px;font-size:14.5px;color:var(--steel-dim);max-width:600px;line-height:1.65;}
+
+/* === STATEMENT === */
+.statement{
+  background:var(--ink-deep);padding:clamp(80px,14vw,160px) 0;text-align:center;
+  position:relative;overflow:hidden;
+}
+.statement::before{
+  content:"";position:absolute;top:50%;left:50%;width:600px;height:600px;
+  transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(circle,rgba(200,164,85,.04) 0%,transparent 70%);
+}
+.statement .eyebrow{justify-content:center;}
+.statement blockquote{
+  font-family:'Playfair Display',serif;font-weight:500;
+  font-size:clamp(26px,4vw,48px);line-height:1.25;max-width:820px;margin:28px auto 0;
+  position:relative;
+}
+.statement blockquote .mark{color:var(--accent-bright);}
+.statement .credit{
+  margin-top:28px;font-family:'JetBrains Mono',monospace;font-size:11.5px;
+  color:var(--steel-dim);letter-spacing:.08em;
+}
+
+/* === WHY SECTION === */
+.why{background:var(--ink);padding:clamp(80px,12vw,140px) 0;}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.why-photo{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/5;order:2;box-shadow:var(--shadow-lg);}
+.why-photo img{width:100%;height:100%;object-fit:cover;}
+.why-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(200deg,transparent 40%,rgba(8,13,20,.5));}
+.feat-list{display:flex;flex-direction:column;gap:4px;}
+.feat{
+  display:flex;gap:20px;padding:24px 20px;border-radius:var(--r-md);
+  transition:all .3s var(--ease);
+}
+.feat:hover{background:rgba(255,255,255,.03);}
+.feat .ico{width:32px;height:32px;flex:none;color:var(--accent);margin-top:2px;padding:6px;background:var(--accent-glow);border-radius:8px;}
+.feat h3{font-family:'Inter',sans-serif;font-size:16px;font-weight:700;letter-spacing:0;}
+.feat p{margin-top:6px;font-size:14.5px;color:var(--steel);line-height:1.65;}
+.feat .tag{
+  font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink);
+  background:linear-gradient(135deg,var(--accent-bright),var(--accent));
+  border-radius:4px;padding:3px 8px;margin-left:10px;letter-spacing:.04em;vertical-align:2px;font-weight:600;
+}
+
+/* === SECTORS === */
+.sectors{background:var(--paper);color:var(--ink);padding:clamp(80px,12vw,140px) 0;}
+.sector-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.sector{
+  border:1px solid var(--line-dark);border-radius:var(--r-md);padding:28px 24px;
+  display:flex;align-items:center;gap:16px;background:var(--paper-light);
+  transition:all .3s var(--ease);cursor:default;
+}
+.sector:hover{
+  border-color:var(--accent);background:var(--white);
+  transform:translateY(-3px);box-shadow:0 8px 24px rgba(200,164,85,.1);
+}
+.sector .ico{width:28px;height:28px;flex:none;color:var(--accent-dim);transition:color .3s var(--ease);}
+.sector:hover .ico{color:var(--accent);}
+.sector span{font-weight:600;font-size:15px;}
+
+/* === PROCESS === */
+.process{background:var(--ink);padding:clamp(80px,12vw,140px) 0;position:relative;}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;}
+.steps::before{content:"";position:absolute;top:20px;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--accent),var(--line));}
+.step{padding-right:32px;position:relative;}
+.step .n{
+  font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;
+  color:var(--ink);background:var(--accent);
+  width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
+  position:relative;z-index:2;box-shadow:0 2px 10px rgba(200,164,85,.3);
+}
+.step h3{margin-top:22px;font-family:'Inter',sans-serif;font-size:17px;font-weight:700;letter-spacing:0;}
+.step p{margin-top:10px;font-size:14px;color:var(--steel);line-height:1.65;}
+
+/* === TESTIMONIALS === */
+.testimonials{background:var(--paper);color:var(--ink);padding:clamp(80px,12vw,140px) 0;}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.testi-card{
+  background:var(--white);border:1px solid var(--line-dark);border-radius:var(--r-lg);
+  padding:32px;position:relative;transition:all .3s var(--ease);
+}
+.testi-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);}
+.testi-card .stars{display:flex;gap:2px;margin-bottom:16px;}
+.testi-card .stars svg{width:16px;height:16px;color:var(--accent);fill:var(--accent);}
+.testi-card .quote{font-size:15px;line-height:1.7;color:var(--steel-dim);font-style:italic;}
+.testi-card .author{margin-top:20px;display:flex;align-items:center;gap:12px;}
+.testi-card .avatar{width:40px;height:40px;border-radius:50%;background:var(--paper-dim);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:var(--accent-dim);}
+.testi-card .author-info .name{font-weight:700;font-size:14px;}
+.testi-card .author-info .role{font-size:12px;color:var(--steel);margin-top:2px;}
+
+/* === COVERAGE === */
+.coverage{background:var(--ink-deep);color:var(--white);padding:clamp(80px,10vw,120px) 0;}
+.cov-flex{display:flex;justify-content:space-between;gap:60px;align-items:center;}
+.cov-left{max-width:400px;}
+.cov-left h2{font-size:clamp(26px,3vw,34px);margin-top:16px;line-height:1.15;}
+.cov-left .desc{margin-top:14px;font-size:15px;color:var(--steel);line-height:1.6;}
+.chips{display:flex;flex-wrap:wrap;gap:10px;max-width:560px;}
+.chip{
+  font-family:'JetBrains Mono',monospace;font-size:12px;
+  border:1px solid rgba(255,255,255,.12);border-radius:999px;
+  padding:8px 16px;color:var(--white);transition:all .2s var(--ease);
+}
+.chip:hover{border-color:var(--accent);color:var(--accent);}
+.chip.dim{color:var(--steel);border-style:dashed;border-color:rgba(255,255,255,.06);}
+
+/* === CTA BANNER === */
+.cta-banner{
+  padding:clamp(100px,14vw,160px) 0;text-align:center;position:relative;overflow:hidden;
+}
+.cta-banner-bg{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(180deg,rgba(8,13,20,.85),rgba(8,13,20,.9)),
+    url('https://images.unsplash.com/photo-1523294557-3637e1db3f33?fm=jpg&q=80&w=2400&auto=format&fit=crop') center/cover no-repeat;
+}
+.cta-banner .wrap{position:relative;z-index:2;}
+.cta-banner .eyebrow{justify-content:center;}
+.cta-banner h2{font-size:clamp(30px,4.5vw,52px);margin-top:22px;max-width:700px;margin-left:auto;margin-right:auto;}
+.cta-banner .cta-row{display:flex;justify-content:center;gap:16px;margin-top:40px;flex-wrap:wrap;}
+
+/* === CONTACT === */
+.contact{background:var(--ink);padding:clamp(80px,12vw,140px) 0;}
+.contact-grid{display:grid;grid-template-columns:1fr .85fr;gap:72px;}
+.form-card{
+  background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--r-lg);padding:40px;backdrop-filter:blur(10px);
+}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.field{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+.field label{font-size:12px;color:var(--steel);font-weight:600;letter-spacing:.03em;}
+.field input,.field select,.field textarea{
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);
+  border-radius:var(--r-sm);color:var(--white);
+  padding:14px 16px;font-family:'Inter',sans-serif;font-size:14px;
+  transition:all .2s var(--ease);
+}
+.field input:focus,.field select:focus,.field textarea:focus{
+  border-color:var(--accent);outline:none;
+  box-shadow:0 0 0 3px rgba(200,164,85,.1);
+}
+.field input::placeholder,.field textarea::placeholder{color:rgba(255,255,255,.25);}
+.field textarea{resize:vertical;min-height:100px;}
+.field select{cursor:pointer;}
+.form-note{margin-top:18px;font-size:12.5px;color:var(--steel-dim);line-height:1.5;}
+.confirm{
+  display:none;border:1px solid var(--live);background:rgba(92,184,92,.06);
+  border-radius:var(--r-sm);padding:16px 18px;font-size:14px;margin-top:18px;color:var(--white);
+}
+.info-card{
+  border:1px solid rgba(255,255,255,.08);border-radius:var(--r-lg);
+  padding:36px;background:rgba(255,255,255,.02);backdrop-filter:blur(10px);
+}
+.info-row{display:flex;gap:16px;padding:20px 0;border-top:1px solid rgba(255,255,255,.06);}
+.info-row:first-child{border-top:0;padding-top:0;}
+.info-row .ico{width:22px;height:22px;flex:none;color:var(--accent);margin-top:2px;}
+.info-row .label{font-size:11px;color:var(--steel);letter-spacing:.06em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;}
+.info-row .val{margin-top:4px;font-size:15.5px;font-weight:600;}
+.info-row .val small{display:block;font-weight:400;color:var(--steel);font-size:12.5px;margin-top:2px;}
+
+/* === FOOTER === */
+footer{background:var(--ink-deep);border-top:1px solid rgba(255,255,255,.06);padding:72px 0 40px;}
+.foot-top{display:flex;justify-content:space-between;gap:48px;flex-wrap:wrap;margin-bottom:56px;}
+.foot-brand{max-width:320px;}
+.foot-brand p{margin-top:14px;font-size:14px;color:var(--steel);line-height:1.7;}
+.foot-cols{display:flex;gap:64px;}
+.foot-col h4{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--steel);text-transform:uppercase;margin-bottom:18px;font-weight:600;}
+.foot-col a,.foot-col span{display:block;font-size:14px;color:rgba(255,255,255,.8);margin-bottom:12px;transition:color .2s var(--ease);}
+.foot-col a:hover{color:var(--accent-bright);}
+.foot-bottom{
+  border-top:1px solid rgba(255,255,255,.06);padding-top:28px;
+  display:flex;justify-content:space-between;font-size:12px;color:var(--steel-dim);
+  font-family:'JetBrains Mono',monospace;flex-wrap:wrap;gap:12px;
+}
+
+/* === WHATSAPP FLOAT === */
+.wa-float{
+  position:fixed;bottom:28px;right:28px;z-index:90;
+  width:60px;height:60px;border-radius:50%;
+  background:linear-gradient(135deg,#25d366,#128c7e);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(37,211,102,.3);
+  transition:all .3s var(--ease);cursor:pointer;
+}
+.wa-float:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,.4);}
+.wa-float svg{width:28px;height:28px;color:white;}
+.wa-float .pulse-ring{
+  position:absolute;inset:-4px;border-radius:50%;border:2px solid #25d366;
+  animation:wa-pulse 2s infinite;
+}
+@keyframes wa-pulse{0%{transform:scale(1);opacity:.6;}100%{transform:scale(1.4);opacity:0;}}
+
+/* === ANIMATIONS === */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease);}
+.reveal.show{opacity:1;transform:none;}
+.reveal-delay-1{transition-delay:.1s;}
+.reveal-delay-2{transition-delay:.2s;}
+.reveal-delay-3{transition-delay:.3s;}
+
+/* === MOBILE NAV === */
+.mnav{
+  position:fixed;inset:76px 0 0 0;background:rgba(8,13,20,.98);z-index:90;
+  transform:translateX(100%);transition:transform .4s var(--ease);
+  padding:40px 24px;display:flex;flex-direction:column;gap:8px;
+  backdrop-filter:blur(20px);
+}
+.mnav.open{transform:translateX(0);}
+.mnav a{padding:18px 4px;font-size:18px;font-weight:600;border-bottom:1px solid rgba(255,255,255,.06);}
+.mnav .btn{margin-top:24px;text-align:center;}
+
+/* === RESPONSIVE === */
+@media(max-width:1024px){
+  .fs-grid{grid-template-columns:1fr;gap:48px;}
+  .why-grid{grid-template-columns:1fr;gap:48px;}
+  .why-photo{order:0;aspect-ratio:16/9;}
+  .testi-grid{grid-template-columns:1fr 1fr;}
+  .contact-grid{grid-template-columns:1fr;gap:48px;}
+}
+@media(max-width:768px){
+  nav.links{display:none;}
+  .burger{display:block;}
+  .nav-phone{display:none;}
+  .stat-strip{grid-template-columns:repeat(2,1fr);}
+  .sector-grid{grid-template-columns:repeat(2,1fr);}
+  .steps{grid-template-columns:repeat(2,1fr);row-gap:40px;}
+  .steps::before{display:none;}
+  .cov-flex{flex-direction:column;text-align:center;}
+  .chips{justify-content:center;}
+  .testi-grid{grid-template-columns:1fr;}
+  .foot-top{flex-direction:column;}
+  .foot-cols{gap:36px;flex-wrap:wrap;}
+}
+@media(max-width:480px){
+  .hero h1{font-size:36px;}
+  .stat-strip{grid-template-columns:1fr 1fr;}
+  .sector-grid{grid-template-columns:1fr;}
+  .steps{grid-template-columns:1fr;}
+  .form-row{grid-template-columns:1fr;}
+  .cta-row .btn{flex:1;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" id="top">
+  <div class="nav-inner">
+    <a class="brand" href="#top">
+      <div class="brand-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2L3 7v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V7l-9-5z"/></svg>
+      </div>
+      <div class="brand-text">
+        <span class="brand-name">Torre Security</span>
+        <span class="brand-sub">Seguridad Profesional</span>
+      </div>
+    </a>
+    <nav class="links">
+      <a href="#servicios">Servicios</a>
+      <a href="#por-que">Por qué elegirnos</a>
+      <a href="#sectores">Sectores</a>
+      <a href="#como-trabajamos">Proceso</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="nav-phone" href="tel:+56900000000">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.4 2.1L8.1 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.8 2z"/></svg>
+        +56 9 0000 0000
+      </a>
+      <a href="#contacto" class="btn btn-primary">Cotizar ahora</a>
+    </div>
+    <button class="burger" aria-label="Menú" onclick="document.querySelector('.mnav').classList.toggle('open')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile nav -->
+<div class="mnav">
+  <a href="#servicios" onclick="this.parentElement.classList.remove('open')">Servicios</a>
+  <a href="#por-que" onclick="this.parentElement.classList.remove('open')">Por qué elegirnos</a>
+  <a href="#sectores" onclick="this.parentElement.classList.remove('open')">Sectores</a>
+  <a href="#como-trabajamos" onclick="this.parentElement.classList.remove('open')">Proceso</a>
+  <a href="#contacto" class="btn btn-primary" onclick="this.parentElement.classList.remove('open')">Cotizar ahora</a>
+</div>
+
+<main>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="badge-live reveal"><span class="dot-live"></span> <b>47</b> guardias en turno ahora &middot; Santiago y regiones</div>
+      <h1 class="reveal reveal-delay-1">Presencia constante.<br>Respuesta real.<br><em>Cero sorpresas.</em></h1>
+      <p class="sub reveal reveal-delay-2">Personal de seguridad certificado OS-10, supervisión activa y tecnología de rondas en cada turno — para edificios, condominios, empresas y eventos en todo Chile.</p>
+      <div class="cta-row reveal reveal-delay-3">
+        <a href="#contacto" class="btn btn-primary">
+          Solicitar cotización
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#servicios" class="btn btn-ghost">Ver servicios</a>
+      </div>
+    </div>
+    <div class="stat-strip">
+      <div class="stat-card reveal"><div class="num">12+</div><div class="label">Años operando en Chile</div></div>
+      <div class="stat-card reveal reveal-delay-1"><div class="num">150+</div><div class="label">Guardias activos en terreno</div></div>
+      <div class="stat-card reveal reveal-delay-2"><div class="num">24/7</div><div class="label">Central de monitoreo</div></div>
+      <div class="stat-card reveal reveal-delay-3"><div class="num">&lt;15min</div><div class="label">Respuesta promedio RM</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<section class="trust-bar">
+  <div class="wrap">
+    <div class="trust-inner">
+      <span>Certificados OS-10</span>
+      <span>Carabineros de Chile</span>
+      <span>ISO 9001</span>
+      <span>ACHS Mutual</span>
+      <span>+200 clientes activos</span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="feat-service" id="servicios">
+  <div class="wrap">
+    <div class="fs-grid">
+      <div class="fs-content reveal">
+        <span class="eyebrow">Servicio principal</span>
+        <h2>Guardias de seguridad en terreno, todos los días</h2>
+        <p style="margin-top:18px;font-size:16px;color:var(--steel-dim);line-height:1.7;">Vigilancia fija o por rondas en accesos, perímetros y áreas comunes, con personal certificado OS-10 y protocolo de actuación definido para tu instalación.</p>
+        <div class="fs-list">
+          <div>
+            <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+            Control de acceso peatonal y vehicular en accesos principales
+          </div>
+          <div>
+            <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+            Bitácora digital de novedades entregada al cierre de cada turno
+          </div>
+          <div>
+            <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+            Con o sin arma, según el riesgo evaluado en el diagnóstico inicial
+          </div>
+        </div>
+      </div>
+      <div class="fs-photo reveal">
+        <img src="https://images.unsplash.com/photo-1485230405346-71acb9518d9c?fm=jpg&q=80&w=1400&auto=format&fit=crop" alt="Guardia de seguridad Torre Security en turno" loading="lazy">
+        <div class="tag"><span class="dot"></span> En turno — acceso principal</div>
+      </div>
+    </div>
+
+    <div class="svc-compact">
+      <div class="svc-row reveal">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
+        <div><h3>Conserjería y control de acceso</h3><p>Recepción, registro de visitas y monitoreo de ingresos y salidas en edificios y condominios.</p></div>
+      </div>
+      <div class="svc-row reveal">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 12c0-4 3-7 7-7M20 12c0 4-3 7-7 7M4 12h4M16 12h4"/><circle cx="8" cy="12" r="1.4" fill="currentColor" stroke="none"/><circle cx="16" cy="12" r="1.4" fill="currentColor" stroke="none"/></svg>
+        <div><h3>Rondas y patrullaje</h3><p>Recorridos programados y aleatorios con registro QR y reporte fotográfico en tiempo real.</p></div>
+      </div>
+      <div class="svc-row reveal">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3 9h18M9 5v-1.5M15 5v-1.5"/></svg>
+        <div><h3>Seguridad para eventos</h3><p>Control de aforo, accesos y resguardo en actividades masivas, corporativas o privadas.</p></div>
+      </div>
+      <div class="svc-row reveal">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="4" y="7" width="16" height="12" rx="1.5"/><path d="M9 7V5.5A2 2 0 0 1 11 3.5h2a2 2 0 0 1 2 2V7"/></svg>
+        <div><h3>Escolta y resguardo de valores</h3><p>Traslado seguro de personas, dinero y mercancía sensible con protocolos definidos.</p></div>
+      </div>
+      <div class="svc-row reveal">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="6" width="13" height="10" rx="1.5"/><path d="M16 10l5-2.5v9L16 14"/></svg>
+        <div><h3>Monitoreo y CCTV</h3><p>Central de monitoreo conectada a cámaras, botones de pánico y alertas en tiempo real.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATEMENT -->
+<section class="statement">
+  <div class="wrap reveal">
+    <span class="eyebrow">Filosofía de operación</span>
+    <blockquote>Un guardia sin supervisión es solo <span class="mark">un uniforme.</span> Lo que entrega resultados es el sistema que opera detrás de él.</blockquote>
+    <p class="credit">— PROTOCOLO DE OPERACIONES, TORRE SECURITY</p>
+  </div>
+</section>
+
+<!-- POR QUÉ -->
+<section class="why" id="por-que">
+  <div class="wrap">
+    <div class="why-grid">
+      <div class="feat-list">
+        <span class="eyebrow" style="margin-bottom:28px;display:inline-flex;">Por qué Torre Security</span>
+        <div class="feat reveal">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+          <div><h3>Guardias certificados <span class="tag">OS-10</span></h3><p>Todo nuestro personal cuenta con la credencial OS-10 vigente y antecedentes verificados antes de pisar tu instalación.</p></div>
+        </div>
+        <div class="feat reveal">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 19h16M7 19V9l5-5 5 5v10M10 19v-5h4v5"/></svg>
+          <div><h3>Supervisión y reportería</h3><p>Supervisores realizan visitas inspectivas sorpresa y entregan reportes digitales semanales con hallazgos y acciones correctivas.</p></div>
+        </div>
+        <div class="feat reveal">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="5" y="2" width="14" height="20" rx="2.5"/><path d="M9 18h6"/></svg>
+          <div><h3>Tecnología de control</h3><p>App de rondas con geolocalización, checkpoints QR y alertas automáticas si un punto de control no se cumple.</p></div>
+        </div>
+        <div class="feat reveal">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 2L3 7v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V7l-9-5z"/></svg>
+          <div><h3>Contratos flexibles</h3><p>Turnos de 8, 12 o 24 horas, con o sin arma, dimensionados al riesgo real y presupuesto de tu operación.</p></div>
+        </div>
+      </div>
+      <div class="why-photo reveal">
+        <img src="https://images.unsplash.com/photo-1714596282575-82d224db8c70?fm=jpg&q=80&w=1400&auto=format&fit=crop" alt="Central de monitoreo Torre Security" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTORES -->
+<section class="sectors" id="sectores">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Sectores</span>
+      <h2>Operamos donde se necesita presencia real</h2>
+    </div>
+    <div class="sector-grid">
+      <div class="sector reveal"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="4" y="3" width="9" height="18"/><rect x="13" y="8" width="7" height="13"/></svg><span>Edificios y condominios</span></div>
+      <div class="sector reveal"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 9l1.5-5h15L21 9M4 9h16v11H4z"/><path d="M9 14h6"/></svg><span>Centros comerciales y retail</span></div>
+      <div class="sector reveal"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="4" width="18" height="13" rx="1"/><path d="M8 21h8M12 17v4"/></svg><span>Oficinas corporativas</span></div>
+      <div class="sector reveal"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 21V9l5-3 5 3v12M13 21V6l5-2v17"/></svg><span>Industria y bodegas</span></div>
+      <div class="sector reveal"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3 9h18M9 5v-1.5M15 5v-1.5"/></svg><span>Eventos y espectáculos</span></div>
+      <div class="sector reveal"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 11l9-7 9 7M5 10v10h14V10"/></svg><span>Conjuntos residenciales</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section class="process" id="como-trabajamos">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Cómo trabajamos</span>
+      <h2>De la evaluación al primer turno, en cuatro pasos</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><span class="n">01</span><h3>Diagnóstico en terreno</h3><p>Visitamos tu instalación y evaluamos riesgos, accesos y puntos críticos junto a la administración.</p></div>
+      <div class="step reveal"><span class="n">02</span><h3>Propuesta de dotación</h3><p>Definimos turnos, perfil de guardias, armamento y protocolo de actuación a la medida del riesgo.</p></div>
+      <div class="step reveal"><span class="n">03</span><h3>Implementación</h3><p>Seleccionamos y capacitamos al personal específico para tu operación antes del primer turno.</p></div>
+      <div class="step reveal"><span class="n">04</span><h3>Supervisión continua</h3><p>Rondas de control, reportes periódicos y ajustes según resultados e incidentes.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="testimonials">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Testimonios</span>
+      <h2>Lo que dicen nuestros clientes</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="quote">"Desde que contratamos a Torre Security, los incidentes en nuestro condominio bajaron un 90%. La diferencia se nota desde el primer día."</p>
+        <div class="author">
+          <div class="avatar">MR</div>
+          <div class="author-info"><div class="name">Mario Reyes</div><div class="role">Administrador, Condominio Los Aromos</div></div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-delay-1">
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="quote">"Los reportes semanales nos dan total visibilidad. La supervisión activa hace que cada guardia cumpla su rol como corresponde."</p>
+        <div class="author">
+          <div class="avatar">CP</div>
+          <div class="author-info"><div class="name">Carolina Pinto</div><div class="role">Gerente de Operaciones, Edificio Costanera</div></div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-delay-2">
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="quote">"La respuesta ante emergencias fue impecable. En menos de 10 minutos teníamos refuerzo en el lugar. Muy recomendados."</p>
+        <div class="author">
+          <div class="avatar">JV</div>
+          <div class="author-info"><div class="name">Juan Valdés</div><div class="role">Director de Seguridad, Mall Plaza Sur</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COBERTURA -->
+<section class="coverage">
+  <div class="wrap">
+    <div class="cov-flex">
+      <div class="cov-left reveal">
+        <span class="eyebrow">Cobertura</span>
+        <h2>Presencia en toda la Región Metropolitana</h2>
+        <p class="desc">Con cobertura adicional en regiones bajo evaluación de factibilidad y plazos de implementación.</p>
+      </div>
+      <div class="chips reveal">
+        <span class="chip">Las Condes</span><span class="chip">Providencia</span><span class="chip">Vitacura</span>
+        <span class="chip">Ñuñoa</span><span class="chip">La Reina</span><span class="chip">Santiago Centro</span>
+        <span class="chip">Maipú</span><span class="chip">Puente Alto</span><span class="chip">San Bernardo</span>
+        <span class="chip">La Florida</span><span class="chip">Huechuraba</span><span class="chip">Lo Barnechea</span>
+        <span class="chip dim">+ otras regiones, bajo consulta</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="cta-banner-bg"></div>
+  <div class="wrap reveal">
+    <span class="eyebrow">Siguiente paso</span>
+    <h2>¿Listo para que tu instalación tenga presencia real?</h2>
+    <div class="cta-row">
+      <a href="#contacto" class="btn btn-primary">
+        Solicitar cotización
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#contacto" class="btn btn-ghost">Hablar con un asesor</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contact" id="contacto">
+  <div class="wrap">
+    <div class="section-head reveal" style="margin-bottom:48px;">
+      <span class="eyebrow">Contacto</span>
+      <h2>Cuéntanos qué necesitas resguardar</h2>
+      <p class="desc">Respondemos cotizaciones dentro de 24 horas hábiles con una propuesta de dotación preliminar.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="form-card reveal">
+        <form id="quoteForm">
+          <div class="form-row">
+            <div class="field"><label for="nombre">Nombre</label><input id="nombre" type="text" required placeholder="Tu nombre"></div>
+            <div class="field"><label for="empresa">Empresa o condominio</label><input id="empresa" type="text" placeholder="Razón social"></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label for="tel">Teléfono</label><input id="tel" type="tel" required placeholder="+56 9 ____ ____"></div>
+            <div class="field"><label for="email">Correo</label><input id="email" type="email" required placeholder="nombre@empresa.cl"></div>
+          </div>
+          <div class="field">
+            <label for="servicio">Servicio que te interesa</label>
+            <select id="servicio">
+              <option>Guardias de seguridad</option>
+              <option>Conserjería y control de acceso</option>
+              <option>Rondas y patrullaje</option>
+              <option>Seguridad para eventos</option>
+              <option>Escolta y resguardo de valores</option>
+              <option>Monitoreo y CCTV</option>
+              <option>No estoy seguro / quiero asesoría</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="msj">Cuéntanos tu caso</label>
+            <textarea id="msj" placeholder="N° de accesos, horario, tamaño de la instalación, etc."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;">
+            Enviar solicitud
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          </button>
+          <p class="form-note">Al enviar este formulario aceptas que te contactemos para elaborar tu cotización. No compartimos tus datos con terceros.</p>
+          <div class="confirm" id="confirmMsg">✓ Solicitud recibida. Un asesor de Torre Security te contactará dentro de 24 horas hábiles.</div>
+        </form>
+      </div>
+
+      <div class="info-card reveal">
+        <div class="info-row">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.4 2.1L8.1 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.8 2z"/></svg>
+          <div><div class="label">Teléfono / WhatsApp</div><div class="val">+56 9 0000 0000</div></div>
+        </div>
+        <div class="info-row">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          <div><div class="label">Correo</div><div class="val">contacto@torresecurity.cl</div></div>
+        </div>
+        <div class="info-row">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg>
+          <div><div class="label">Oficina central</div><div class="val">Santiago, Región Metropolitana<small>Visitas técnicas con cita previa</small></div></div>
+        </div>
+        <div class="info-row">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+          <div><div class="label">Atención central de monitoreo</div><div class="val">24 horas, 7 días<small>Línea directa para clientes con contrato vigente</small></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a class="brand" href="#top">
+          <div class="brand-logo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2L3 7v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V7l-9-5z"/></svg>
+          </div>
+          <div class="brand-text">
+            <span class="brand-name">Torre Security</span>
+            <span class="brand-sub">Seguridad Profesional</span>
+          </div>
+        </a>
+        <p>Empresa de seguridad privada con más de 12 años de experiencia resguardando personas, bienes e instalaciones en todo Chile.</p>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h4>Servicios</h4>
+          <a href="#servicios">Guardias de seguridad</a>
+          <a href="#servicios">Conserjería</a>
+          <a href="#servicios">Rondas y patrullaje</a>
+          <a href="#servicios">Monitoreo CCTV</a>
+        </div>
+        <div class="foot-col">
+          <h4>Empresa</h4>
+          <a href="#por-que">Nosotros</a>
+          <a href="#como-trabajamos">Cómo trabajamos</a>
+          <a href="#sectores">Sectores</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+        <div class="foot-col">
+          <h4>Contacto</h4>
+          <span>+56 9 0000 0000</span>
+          <span>contacto@torresecurity.cl</span>
+          <span>Santiago, Chile</span>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2024 Torre Security. Todos los derechos reservados.</span>
+      <span>OS-10 vigente &middot; Ley 19.303</span>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp Float -->
+<a class="wa-float" href="https://wa.me/56900000000" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+  <span class="pulse-ring"></span>
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- SCRIPTS -->
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Nav scroll effect
+const nav = document.querySelector('header.nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+// Form submission
+document.getElementById('quoteForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const btn = this.querySelector('button[type="submit"]');
+  btn.textContent = 'Enviando...';
+  btn.disabled = true;
+  setTimeout(() => {
+    document.getElementById('confirmMsg').style.display = 'block';
+    btn.textContent = '✓ Enviado';
+    btn.style.background = 'linear-gradient(135deg, #5cb85c, #4cae4c)';
+  }, 1500);
+});
+
+// Smooth counter animation
+function animateCounters() {
+  document.querySelectorAll('.stat-card .num').forEach(el => {
+    const text = el.textContent;
+    const match = text.match(/(\d+)/);
+    if (match) {
+      const target = parseInt(match[0]);
+      const prefix = text.split(match[0])[0];
+      const suffix = text.split(match[0])[1];
+      let current = 0;
+      const increment = target / 40;
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          current = target;
+          clearInterval(timer);
+        }
+        el.textContent = prefix + Math.floor(current) + suffix;
+      }, 40);
+    }
+  });
+}
+
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateCounters();
+      statsObserver.disconnect();
+    }
+  });
+}, { threshold: 0.3 });
+
+const statsEl = document.querySelector('.stat-strip');
+if (statsEl) statsObserver.observe(statsEl);
+</script>
+
+</body>
+</html>
