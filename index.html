@@ -301,6 +301,16 @@ nav.links a:hover::after{width:100%;}
 .svc-row p{margin-top:6px;font-size:14.5px;color:var(--steel-dim);max-width:600px;line-height:1.65;}
 
 /* === STATEMENT === */
+.gallery{background:var(--ink);padding:clamp(60px,8vw,100px) 0;}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.gallery-grid img{
+  width:100%;height:220px;object-fit:cover;border-radius:var(--r-md);
+  transition:transform .4s var(--ease),filter .4s var(--ease);filter:brightness(.9);
+}
+.gallery-grid img:hover{transform:scale(1.03);filter:brightness(1);}
+@media(max-width:768px){.gallery-grid{grid-template-columns:repeat(2,1fr);gap:8px;}.gallery-grid img{height:160px;}}
+@media(max-width:480px){.gallery-grid img{height:130px;}}
+
 .statement{
   background:var(--ink-deep);padding:clamp(80px,14vw,160px) 0;text-align:center;
   position:relative;overflow:hidden;
@@ -813,7 +823,7 @@ footer{background:var(--ink-deep);border-top:1px solid rgba(255,255,255,.06);pad
         </div>
       </div>
       <div class="fs-photo reveal">
-        <img src="https://images.unsplash.com/photo-1485230405346-71acb9518d9c?fm=jpg&q=80&w=1400&auto=format&fit=crop" alt="Guardia de seguridad Torres Security en turno" loading="lazy">
+        <img src="guardia-1.jpg" alt="Guardia de seguridad Torres Security en turno" loading="lazy">
         <div class="tag"><span class="dot"></span> En turno — acceso principal</div>
       </div>
     </div>
@@ -835,6 +845,22 @@ footer{background:var(--ink-deep);border-top:1px solid rgba(255,255,255,.06);pad
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="6" width="13" height="10" rx="1.5"/><path d="M16 10l5-2.5v9L16 14"/></svg>
         <div><h3>Prevención de riesgos y directiva de funcionamiento</h3><p>Prevencionista especialista en terreno. Te ayudamos a tramitar la directiva de funcionamiento de tu instalación, requisito exigido en múltiples recintos.</p></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA EQUIPO REAL -->
+<section class="gallery">
+  <div class="wrap">
+    <div class="section-head reveal" style="margin-bottom:36px;">
+      <span class="eyebrow">Nuestro equipo en terreno</span>
+      <h2>Personal real, presencia real</h2>
+    </div>
+    <div class="gallery-grid reveal">
+      <img src="conserje-telefono.jpg" alt="Conserje Torres Security atendiendo teléfono" loading="lazy">
+      <img src="monitoreo-2.jpg" alt="Central de monitoreo CCTV Torres Security" loading="lazy">
+      <img src="ronda.jpg" alt="Personal de rondas Torres Security" loading="lazy">
+      <img src="conserje-casilleros.jpg" alt="Conserje Torres Security en recepción" loading="lazy">
     </div>
   </div>
 </section>
@@ -872,7 +898,7 @@ footer{background:var(--ink-deep);border-top:1px solid rgba(255,255,255,.06);pad
         </div>
       </div>
       <div class="why-photo reveal">
-        <img src="https://images.unsplash.com/photo-1714596282575-82d224db8c70?fm=jpg&q=80&w=1400&auto=format&fit=crop" alt="Central de monitoreo Torres Security" loading="lazy">
+        <img src="monitoreo-1.jpg" alt="Central de monitoreo Torres Security" loading="lazy">
       </div>
     </div>
   </div>
