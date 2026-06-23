@@ -208,10 +208,10 @@ nav.links a:hover::after{width:100%;}
 .hero-content{max-width:680px;}
 .badge-live{
   display:inline-flex;align-items:center;gap:10px;
-  border:1px solid rgba(255,255,255,.1);border-radius:999px;
-  padding:8px 18px 8px 14px;margin-bottom:32px;
-  font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--steel);
-  background:rgba(255,255,255,.03);backdrop-filter:blur(10px);
+  border:1.5px solid rgba(255,255,255,.25);border-radius:999px;
+  padding:10px 20px 10px 16px;margin-bottom:32px;
+  font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--white);
+  background:rgba(255,255,255,.08);backdrop-filter:blur(10px);
 }
 .dot-live{width:8px;height:8px;border-radius:50%;background:var(--live);position:relative;}
 .dot-live::after{
@@ -226,15 +226,11 @@ nav.links a:hover::after{width:100%;}
 .badge-live b{color:var(--white);font-weight:600;}
 .hero h1{
   font-size:clamp(42px,6.5vw,82px);line-height:1.0;
-  background:linear-gradient(135deg,var(--white) 0%,rgba(255,255,255,.85) 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;
+  color:var(--white);
 }
 .hero h1 em{
   font-style:normal;
-  background:linear-gradient(135deg,var(--accent-bright),var(--accent));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;
+  color:var(--silver);
 }
 .hero .sub{margin-top:28px;font-size:18px;line-height:1.7;color:rgba(255,255,255,.7);max-width:520px;font-weight:300;}
 .hero .cta-row{display:flex;gap:16px;margin-top:44px;flex-wrap:wrap;}
@@ -760,9 +756,9 @@ footer{background:var(--ink-deep);border-top:1px solid rgba(255,255,255,.06);pad
   <div class="hero-bg"></div>
   <div class="hero-inner">
     <div class="hero-content">
-      <div class="badge-live reveal"><span class="dot-live"></span> <b>Empresa certificada OS-10</b> &middot; Prevencionista de riesgos en terreno</div>
-      <h1 class="reveal reveal-delay-1">Seguridad profesional<br>con respaldo real.<br><em>Cotiza tu levantamiento.</em></h1>
-      <p class="sub reveal reveal-delay-2">Guardias de seguridad certificados OS-10 con supervisión activa, prevencionista de riesgos especialista y tecnología de rondas 24/7 — para edificios, condominios, empresas, obras y eventos en todo Chile.</p>
+      <div class="badge-live reveal"><span class="dot-live"></span> <b>Empresa certificada OS-10</b> &middot; Prevencionista de riesgos especialista</div>
+      <h1 class="reveal reveal-delay-1">Certificados OS-10.<br>Prevencionista especialista.<br><em>Cotiza tu levantamiento.</em></h1>
+      <p class="sub reveal reveal-delay-2">Somos una empresa de seguridad certificada OS-10 y contamos con un prevencionista de riesgos especialista en la materia. Además, te ayudamos a tramitar la directiva de funcionamiento de tu instalación. Cotiza tu levantamiento sin compromiso.</p>
       <div class="cta-row reveal reveal-delay-3">
         <a href="#contacto" class="btn btn-primary">
           Solicitar cotización
@@ -833,11 +829,11 @@ footer{background:var(--ink-deep);border-top:1px solid rgba(255,255,255,.06);pad
       </div>
       <div class="svc-row reveal">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3 9h18M9 5v-1.5M15 5v-1.5"/></svg>
-        <div><h3>Seguridad para eventos</h3><p>Control de aforo, accesos y resguardo en actividades masivas, corporativas o privadas.</p></div>
+        <div><h3>Seguridad para eventos corporativos</h3><p>Control de acceso y resguardo para lanzamientos, activaciones de marca, reuniones ejecutivas y eventos privados de menor escala.</p></div>
       </div>
       <div class="svc-row reveal">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="6" width="13" height="10" rx="1.5"/><path d="M16 10l5-2.5v9L16 14"/></svg>
-        <div><h3>Prevención de riesgos</h3><p>Prevencionista especialista en terreno para evaluaciones, protocolos y cumplimiento normativo en tu instalación u obra.</p></div>
+        <div><h3>Prevención de riesgos y directiva de funcionamiento</h3><p>Prevencionista especialista en terreno. Te ayudamos a tramitar la directiva de funcionamiento de tu instalación, requisito exigido en múltiples recintos.</p></div>
       </div>
     </div>
   </div>
@@ -894,7 +890,7 @@ footer{background:var(--ink-deep);border-top:1px solid rgba(255,255,255,.06);pad
       <div class="sector reveal"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6M9 9h.01M15 9h.01M9 13h.01M15 13h.01"/></svg><span>Obras y construcción</span></div>
       <div class="sector reveal"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="4" width="18" height="13" rx="1"/><path d="M8 21h8M12 17v4"/></svg><span>Oficinas corporativas</span></div>
       <div class="sector reveal"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 21V9l5-3 5 3v12M13 21V6l5-2v17"/></svg><span>Industria y bodegas</span></div>
-      <div class="sector reveal"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3 9h18M9 5v-1.5M15 5v-1.5"/></svg><span>Eventos y espectáculos</span></div>
+      <div class="sector reveal"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3 9h18M9 5v-1.5M15 5v-1.5"/></svg><span>Eventos corporativos y lanzamientos</span></div>
       <div class="sector reveal"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 11l9-7 9 7M5 10v10h14V10"/></svg><span>Conjuntos residenciales</span></div>
     </div>
   </div>
@@ -1039,7 +1035,7 @@ footer{background:var(--ink-deep);border-top:1px solid rgba(255,255,255,.06);pad
               <option>Guardias de seguridad</option>
               <option>Conserjería y control de acceso</option>
               <option>Rondas y patrullaje</option>
-              <option>Seguridad para eventos</option>
+              <option>Seguridad para eventos corporativos</option>
               <option>Seguridad para obras y construcción</option>
               <option>Prevención de riesgos</option>
               <option>No estoy seguro / quiero asesoría</option>
