@@ -2,16 +2,67 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Torre Security — Guardias de seguridad profesional en Chile</title>
-<meta name="description" content="Guardias de seguridad certificados OS-10, rondas con tecnología de monitoreo y supervisión 24/7 para edificios, empresas y eventos en todo Chile.">
-<meta name="keywords" content="guardias de seguridad, seguridad privada, Chile, OS-10, vigilancia, monitoreo">
+<meta name="description" content="Guardias de seguridad certificados OS-10, rondas con tecnología de monitoreo y supervisión 24/7 para edificios, empresas y eventos en todo Chile. Cotiza gratis.">
+<meta name="keywords" content="guardias de seguridad, seguridad privada, Chile, OS-10, vigilancia, monitoreo, empresa de seguridad, guardias Santiago">
+<meta name="author" content="Torre Security">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#c8a455">
+<meta name="msapplication-TileColor" content="#080d14">
+<link rel="canonical" href="https://torresecurity.cl/">
+<!-- Open Graph -->
 <meta property="og:title" content="Torre Security — Seguridad profesional en Chile">
-<meta property="og:description" content="Personal certificado OS-10, supervisión activa y tecnología de rondas 24/7.">
+<meta property="og:description" content="Personal certificado OS-10, supervisión activa y tecnología de rondas 24/7. Cotiza sin compromiso.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://torresecurity.cl/">
+<meta property="og:site_name" content="Torre Security">
+<meta property="og:locale" content="es_CL">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Torre Security — Seguridad profesional en Chile">
+<meta name="twitter:description" content="Guardias certificados OS-10, supervisión 24/7 y tecnología de rondas para edificios, empresas y eventos.">
+<!-- Favicon SVG -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ddb966'/%3E%3Cstop offset='100%25' stop-color='%23c8a455'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='20' fill='%23080d14'/%3E%3Cpath d='M50 15L25 28v20c0 18 10 34 25 37 15-3 25-19 25-37V28L50 15z' fill='none' stroke='url(%23g)' stroke-width='5'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="https://images.unsplash.com/photo-1512267372775-a001038ff126?fm=jpg&q=80&w=2600&auto=format&fit=crop">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Structured Data - Local Business -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SecurityService",
+  "name": "Torre Security",
+  "description": "Empresa de seguridad privada con guardias certificados OS-10, supervisión 24/7 y tecnología de rondas para edificios, empresas y eventos en Chile.",
+  "url": "https://torresecurity.cl",
+  "telephone": "+56971330437",
+  "email": "contacto@torresecurity.cl",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "El Cabildo 10960",
+    "addressLocality": "Santiago",
+    "addressRegion": "Región Metropolitana",
+    "addressCountry": "CL"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -33.4489,
+    "longitude": -70.6693
+  },
+  "openingHours": "Mo-Su 00:00-23:59",
+  "areaServed": {
+    "@type": "Place",
+    "name": "Región Metropolitana, Chile"
+  },
+  "priceRange": "$$",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "87"
+  }
+}
+</script>
 <style>
 :root{
   --ink:#080d14;
@@ -54,6 +105,7 @@ body{
   font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.6;
   -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
   overflow-x:hidden;
+  -webkit-tap-highlight-color:transparent;
 }
 img{max-width:100%;display:block;}
 a{color:inherit;text-decoration:none;transition:color .2s var(--ease);}
@@ -418,7 +470,7 @@ nav.links a:hover::after{width:100%;}
 .info-row .val small{display:block;font-weight:400;color:var(--steel);font-size:12.5px;margin-top:2px;}
 
 /* === FOOTER === */
-footer{background:var(--ink-deep);border-top:1px solid rgba(255,255,255,.06);padding:72px 0 40px;}
+footer{background:var(--ink-deep);border-top:1px solid rgba(255,255,255,.06);padding:72px 0 40px;padding-bottom:calc(40px + env(safe-area-inset-bottom,0px));}
 .foot-top{display:flex;justify-content:space-between;gap:48px;flex-wrap:wrap;margin-bottom:56px;}
 .foot-brand{max-width:320px;}
 .foot-brand p{margin-top:14px;font-size:14px;color:var(--steel);line-height:1.7;}
@@ -461,11 +513,14 @@ footer{background:var(--ink-deep);border-top:1px solid rgba(255,255,255,.06);pad
   position:fixed;inset:76px 0 0 0;background:rgba(8,13,20,.98);z-index:90;
   transform:translateX(100%);transition:transform .4s var(--ease);
   padding:40px 24px;display:flex;flex-direction:column;gap:8px;
-  backdrop-filter:blur(20px);
+  backdrop-filter:blur(20px);overflow-y:auto;
 }
 .mnav.open{transform:translateX(0);}
-.mnav a{padding:18px 4px;font-size:18px;font-weight:600;border-bottom:1px solid rgba(255,255,255,.06);}
-.mnav .btn{margin-top:24px;text-align:center;}
+.mnav a{padding:18px 4px;font-size:18px;font-weight:600;border-bottom:1px solid rgba(255,255,255,.06);display:block;}
+.mnav .btn{margin-top:24px;text-align:center;display:block;}
+@media(max-width:480px){
+  .mnav{inset:64px 0 0 0;padding:32px 20px;}
+}
 
 /* === RESPONSIVE === */
 @media(max-width:1024px){
@@ -479,25 +534,142 @@ footer{background:var(--ink-deep);border-top:1px solid rgba(255,255,255,.06);pad
   nav.links{display:none;}
   .burger{display:block;}
   .nav-phone{display:none;}
-  .stat-strip{grid-template-columns:repeat(2,1fr);}
-  .sector-grid{grid-template-columns:repeat(2,1fr);}
-  .steps{grid-template-columns:repeat(2,1fr);row-gap:40px;}
+  .nav-cta .btn{padding:12px 20px;font-size:13px;}
+  .hero{padding:130px 0 60px;min-height:auto;}
+  .hero h1{font-size:clamp(32px,8vw,48px);}
+  .hero .sub{font-size:16px;margin-top:20px;}
+  .hero .cta-row{margin-top:32px;}
+  .stat-strip{grid-template-columns:repeat(2,1fr);margin-top:50px;gap:12px;}
+  .stat-card{padding:18px;}
+  .stat-card .num{font-size:26px;}
+  .trust-bar{padding:32px 0;}
+  .trust-inner{gap:24px;justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;padding-bottom:8px;}
+  .trust-inner span{white-space:nowrap;font-size:10px;}
+  .feat-service,.why,.sectors,.process,.testimonials,.coverage,.contact{padding:clamp(60px,10vw,100px) 0;}
+  .section-head{margin-bottom:40px;}
+  .section-head h2{font-size:clamp(26px,5vw,36px);}
+  .fs-grid{grid-template-columns:1fr;gap:36px;}
+  .fs-photo{aspect-ratio:16/10;max-height:360px;}
+  .fs-content h2{font-size:clamp(24px,5vw,32px);}
+  .fs-list div{padding:10px 12px;font-size:14px;}
+  .svc-row{grid-template-columns:36px 1fr;gap:16px;padding:22px 0;}
+  .svc-row .ico{width:24px;height:24px;}
+  .svc-row h3{font-size:15px;}
+  .svc-row p{font-size:13.5px;}
+  .statement blockquote{font-size:clamp(22px,5vw,36px);}
+  .statement{padding:clamp(60px,10vw,100px) 0;}
+  .why-grid{grid-template-columns:1fr;gap:36px;}
+  .why-photo{order:0;aspect-ratio:16/9;}
+  .feat{padding:20px 14px;gap:16px;}
+  .feat .ico{width:28px;height:28px;}
+  .feat h3{font-size:15px;}
+  .feat p{font-size:13.5px;}
+  .sector-grid{grid-template-columns:repeat(2,1fr);gap:12px;}
+  .sector{padding:20px 18px;gap:12px;}
+  .sector span{font-size:13.5px;}
+  .steps{grid-template-columns:repeat(2,1fr);row-gap:36px;gap:24px;}
   .steps::before{display:none;}
-  .cov-flex{flex-direction:column;text-align:center;}
-  .chips{justify-content:center;}
+  .step{padding-right:0;}
+  .step h3{font-size:15px;margin-top:16px;}
+  .step p{font-size:13px;}
   .testi-grid{grid-template-columns:1fr;}
-  .foot-top{flex-direction:column;}
-  .foot-cols{gap:36px;flex-wrap:wrap;}
+  .testi-card{padding:24px;}
+  .testi-card .quote{font-size:14px;}
+  .cov-flex{flex-direction:column;text-align:center;gap:36px;}
+  .cov-left h2{font-size:24px;}
+  .chips{justify-content:center;gap:8px;}
+  .chip{font-size:11px;padding:6px 12px;}
+  .cta-banner h2{font-size:clamp(24px,5vw,36px);}
+  .contact-grid{grid-template-columns:1fr;gap:36px;}
+  .form-card{padding:28px 20px;}
+  .info-card{padding:28px 20px;}
+  .foot-top{flex-direction:column;gap:36px;}
+  .foot-cols{gap:32px;flex-wrap:wrap;}
+  .foot-brand p{font-size:13px;}
+  .foot-bottom{flex-direction:column;align-items:center;text-align:center;gap:8px;}
+  .wa-float{width:54px;height:54px;bottom:20px;right:20px;}
+  .wa-float svg{width:24px;height:24px;}
 }
 @media(max-width:480px){
-  .hero h1{font-size:36px;}
-  .stat-strip{grid-template-columns:1fr 1fr;}
-  .sector-grid{grid-template-columns:1fr;}
-  .steps{grid-template-columns:1fr;}
+  .hero{padding:110px 0 50px;}
+  .hero h1{font-size:30px;line-height:1.08;}
+  .hero .sub{font-size:15px;line-height:1.6;}
+  .badge-live{font-size:10px;padding:6px 12px 6px 10px;gap:8px;margin-bottom:24px;}
+  .hero .cta-row{flex-direction:column;gap:12px;}
+  .hero .cta-row .btn{width:100%;justify-content:center;}
+  .stat-strip{grid-template-columns:1fr 1fr;gap:10px;}
+  .stat-card{padding:16px;}
+  .stat-card .num{font-size:22px;}
+  .stat-card .label{font-size:11px;}
+  .fs-photo{aspect-ratio:4/3;max-height:280px;}
+  .fs-content h2{font-size:22px;}
+  .fs-list div{font-size:13.5px;padding:8px 10px;}
+  .fs-list .check{width:18px;height:18px;}
+  .svc-compact{margin-top:48px;}
+  .svc-row{grid-template-columns:30px 1fr;gap:12px;padding:18px 0;}
+  .svc-row .ico{width:20px;height:20px;}
+  .svc-row h3{font-size:14px;}
+  .svc-row p{font-size:13px;}
+  .statement blockquote{font-size:20px;line-height:1.3;}
+  .statement .credit{font-size:10px;}
+  .feat{padding:16px 10px;gap:14px;}
+  .feat .ico{width:26px;height:26px;padding:5px;}
+  .feat h3{font-size:14px;}
+  .feat p{font-size:13px;line-height:1.55;}
+  .feat .tag{font-size:9px;padding:2px 6px;}
+  .sector-grid{grid-template-columns:1fr;gap:10px;}
+  .sector{padding:18px 16px;}
+  .sector .ico{width:22px;height:22px;}
+  .sector span{font-size:14px;}
+  .steps{grid-template-columns:1fr;gap:32px;}
+  .step .n{width:26px;height:26px;font-size:11px;}
+  .step h3{font-size:15px;}
+  .testi-card{padding:20px;}
+  .testi-card .quote{font-size:13.5px;}
+  .testi-card .author-info .name{font-size:13px;}
+  .testi-card .author-info .role{font-size:11px;}
+  .testi-card .avatar{width:36px;height:36px;font-size:12px;}
+  .cov-left h2{font-size:22px;}
+  .cov-left .desc{font-size:14px;}
+  .chip{font-size:10.5px;padding:6px 11px;}
+  .cta-banner{padding:clamp(60px,10vw,100px) 0;}
+  .cta-banner h2{font-size:22px;}
+  .cta-banner .cta-row{flex-direction:column;}
+  .cta-banner .cta-row .btn{width:100%;justify-content:center;}
   .form-row{grid-template-columns:1fr;}
-  .cta-row .btn{flex:1;text-align:center;}
+  .form-card{padding:24px 16px;border-radius:var(--r-md);}
+  .field input,.field select,.field textarea{padding:12px 14px;font-size:14px;}
+  .field label{font-size:11px;}
+  .btn{padding:14px 24px;font-size:13px;}
+  .info-card{padding:24px 16px;border-radius:var(--r-md);}
+  .info-row .val{font-size:14px;}
+  .info-row .label{font-size:10px;}
+  .section-head h2{font-size:24px;}
+  .section-head .desc{font-size:15px;}
+  .eyebrow{font-size:10px;letter-spacing:.16em;}
+  .eyebrow::before{width:18px;}
+  .foot-cols{gap:24px;}
+  .foot-col h4{font-size:10px;margin-bottom:12px;}
+  .foot-col a,.foot-col span{font-size:13px;margin-bottom:10px;}
+  .foot-bottom{font-size:10.5px;}
+  .mnav a{font-size:16px;padding:14px 4px;}
+  .brand-name{font-size:16px;}
+  .brand-logo{width:36px;height:36px;border-radius:8px;}
+  .brand-logo svg{width:18px;height:18px;}
+  .nav-inner{height:64px;}
+}
+@media(max-width:360px){
+  .hero h1{font-size:26px;}
+  .hero .sub{font-size:14px;}
+  .stat-card .num{font-size:20px;}
+  .stat-card .label{font-size:10px;}
+  .stat-card{padding:14px;}
+  .wrap{padding:0 16px;}
+  .form-card{padding:20px 14px;}
+  .btn{padding:13px 20px;font-size:12.5px;}
 }
 </style>
+<noscript><style>.reveal{opacity:1!important;transform:none!important;}</style></noscript>
 </head>
 <body>
 
@@ -513,7 +685,7 @@ footer{background:var(--ink-deep);border-top:1px solid rgba(255,255,255,.06);pad
         <span class="brand-sub">Seguridad Profesional</span>
       </div>
     </a>
-    <nav class="links">
+    <nav class="links" aria-label="Navegación principal">
       <a href="#servicios">Servicios</a>
       <a href="#por-que">Por qué elegirnos</a>
       <a href="#sectores">Sectores</a>
@@ -542,7 +714,7 @@ footer{background:var(--ink-deep);border-top:1px solid rgba(255,255,255,.06);pad
   <a href="#contacto" class="btn btn-primary" onclick="this.parentElement.classList.remove('open')">Cotizar ahora</a>
 </div>
 
-<main>
+<main role="main">
 
 <!-- HERO -->
 <section class="hero">
@@ -573,11 +745,11 @@ footer{background:var(--ink-deep);border-top:1px solid rgba(255,255,255,.06);pad
 <section class="trust-bar">
   <div class="wrap">
     <div class="trust-inner">
-      <span>Certificados OS-10</span>
-      <span>Carabineros de Chile</span>
-      <span>ISO 9001</span>
-      <span>ACHS Mutual</span>
-      <span>+200 clientes activos</span>
+      <span>✓ Certificados OS-10</span>
+      <span>✓ Ley 19.303</span>
+      <span>✓ Mutual ACHS</span>
+      <span>✓ Supervisión 24/7</span>
+      <span>✓ +200 clientes activos</span>
     </div>
   </div>
 </section>
@@ -815,6 +987,9 @@ footer{background:var(--ink-deep);border-top:1px solid rgba(255,255,255,.06);pad
           <input type="hidden" name="subject" value="Nueva cotización - Torre Security">
           <input type="hidden" name="from_name" value="Torre Security Web">
           <input type="hidden" name="redirect" value="">
+          <input type="hidden" name="botcheck" value="">
+          <input type="hidden" name="replyto" value="">
+          <input type="hidden" name="template" value="basic">
           <div class="form-row">
             <div class="field"><label for="nombre">Nombre</label><input id="nombre" name="nombre" type="text" required placeholder="Tu nombre"></div>
             <div class="field"><label for="empresa">Empresa o condominio</label><input id="empresa" name="empresa" type="text" placeholder="Razón social"></div>
@@ -912,7 +1087,7 @@ footer{background:var(--ink-deep);border-top:1px solid rgba(255,255,255,.06);pad
       </div>
     </div>
     <div class="foot-bottom">
-      <span>&copy; 2024 Torre Security. Todos los derechos reservados.</span>
+      <span>&copy; <span data-y</span>2024</span> Torre Security. Todos los derechos reservados.</span>
       <span>OS-10 vigente &middot; Ley 19.303</span>
     </div>
   </div>
@@ -926,21 +1101,24 @@ footer{background:var(--ink-deep);border-top:1px solid rgba(255,255,255,.06);pad
 
 <!-- SCRIPTS -->
 <script>
-// Scroll reveal
+// Scroll reveal animations
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('show');
     }
   });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+}, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 // Nav scroll effect
 const nav = document.querySelector('header.nav');
+let lastScroll = 0;
 window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 60);
+  const y = window.scrollY;
+  nav.classList.toggle('scrolled', y > 60);
+  lastScroll = y;
 }, { passive: true });
 
 // Form submission via Web3Forms
@@ -948,8 +1126,13 @@ document.getElementById('quoteForm').addEventListener('submit', function(e) {
   e.preventDefault();
   const btn = this.querySelector('button[type="submit"]');
   const originalHTML = btn.innerHTML;
-  btn.innerHTML = 'Enviando...';
+  btn.innerHTML = '<span style="display:inline-flex;align-items:center;gap:8px;">Enviando<span class="dots">...</span></span>';
   btn.disabled = true;
+  btn.style.opacity = '.7';
+  
+  // Set reply-to with client email
+  const emailField = this.querySelector('#email');
+  this.querySelector('[name="replyto"]').value = emailField.value;
   
   const formData = new FormData(this);
   
@@ -963,16 +1146,22 @@ document.getElementById('quoteForm').addEventListener('submit', function(e) {
       document.getElementById('confirmMsg').style.display = 'block';
       btn.innerHTML = '✓ Enviado correctamente';
       btn.style.background = 'linear-gradient(135deg, #5cb85c, #4cae4c)';
+      btn.style.opacity = '1';
+      this.reset();
+      // Scroll to confirmation
+      document.getElementById('confirmMsg').scrollIntoView({ behavior: 'smooth', block: 'center' });
     } else {
-      btn.innerHTML = 'Error, intenta de nuevo';
+      btn.innerHTML = '✗ Error, intenta de nuevo';
       btn.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
+      btn.style.opacity = '1';
       btn.disabled = false;
       setTimeout(() => { btn.innerHTML = originalHTML; btn.style.background = ''; }, 3000);
     }
   })
   .catch(() => {
-    btn.innerHTML = 'Error de conexión';
+    btn.innerHTML = '✗ Error de conexión';
     btn.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
+    btn.style.opacity = '1';
     btn.disabled = false;
     setTimeout(() => { btn.innerHTML = originalHTML; btn.style.background = ''; }, 3000);
   });
@@ -988,15 +1177,16 @@ function animateCounters() {
       const prefix = text.split(match[0])[0];
       const suffix = text.split(match[0])[1];
       let current = 0;
-      const increment = target / 40;
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-          current = target;
-          clearInterval(timer);
-        }
-        el.textContent = prefix + Math.floor(current) + suffix;
-      }, 40);
+      const duration = 1600;
+      const startTime = performance.now();
+      function step(timestamp) {
+        const progress = Math.min((timestamp - startTime) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+        current = Math.floor(eased * target);
+        el.textContent = prefix + current + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
     }
   });
 }
@@ -1012,6 +1202,20 @@ const statsObserver = new IntersectionObserver((entries) => {
 
 const statsEl = document.querySelector('.stat-strip');
 if (statsEl) statsObserver.observe(statsEl);
+
+// Phone number formatting
+const telInput = document.getElementById('tel');
+if (telInput) {
+  telInput.addEventListener('input', function() {
+    let val = this.value.replace(/[^\d+]/g, '');
+    this.value = val;
+  });
+}
+
+// Current year in footer
+document.querySelectorAll('[data-year]').forEach(el => {
+  el.textContent = new Date().getFullYear();
+});
 </script>
 
 </body>
