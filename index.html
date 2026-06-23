@@ -550,6 +550,38 @@ nav.links a:hover::after{width:100%;}
 .cta-banner .cta-row{display:flex;justify-content:center;gap:16px;margin-top:40px;flex-wrap:wrap;}
 
 /* === FAQ === */
+.gallery-grid img{
+  width:100%;height:220px;object-fit:cover;border-radius:var(--r-md);
+  transition:transform .7s var(--ease),filter .4s var(--ease);filter:brightness(.85);
+  position:relative;
+}
+.gallery-grid img:hover{transform:scale(1.08);filter:brightness(1);}
+.gallery-grid .img-wrap{
+  position:relative;overflow:hidden;border-radius:var(--r-md);border:1px solid rgba(255,255,255,.06);
+}
+.gallery-grid .img-wrap::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.03) 2px,rgba(0,0,0,.03) 4px);
+  mix-blend-mode:overlay;
+}
+.gallery-grid .img-wrap::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:2px;
+  background:rgba(255,255,255,.4);z-index:2;
+  animation:scanline 3s linear infinite;
+}
+@keyframes scanline{0%{top:0;}100%{top:100%;}}
+.gallery-grid .img-label{
+  position:absolute;bottom:12px;left:12px;z-index:3;
+  font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--white);background:rgba(10,22,40,.7);
+  padding:5px 10px;border-radius:4px;backdrop-filter:blur(4px);
+}
+.gallery-grid .img-rec{
+  position:absolute;top:10px;right:10px;z-index:3;
+  width:8px;height:8px;border-radius:50%;background:#e74c3c;
+  animation:pulse 2s infinite;
+}
+
 .faq{background:var(--paper);color:var(--ink);padding:clamp(80px,12vw,140px) 0;}
 .faq-grid{max-width:720px;}
 .faq-item{border-bottom:1px solid var(--line-dark);padding:0;}
@@ -1011,10 +1043,26 @@ footer{background:var(--ink-deep);border-top:1px solid rgba(255,255,255,.06);pad
       <h2>Personal real, presencia real</h2>
     </div>
     <div class="gallery-grid reveal">
-      <img src="conserje-telefono.jpg" alt="Conserje Torre Security atendiendo teléfono" loading="lazy">
-      <img src="monitoreo-2.jpg" alt="Central de monitoreo CCTV Torre Security" loading="lazy">
-      <img src="ronda.jpg" alt="Personal de rondas Torre Security" loading="lazy">
-      <img src="conserje-casilleros.jpg" alt="Conserje Torre Security en recepción" loading="lazy">
+      <div class="img-wrap">
+        <span class="img-rec"></span>
+        <span class="img-label">CAM 01 · Conserjería</span>
+        <img src="conserje-telefono.jpg" alt="Conserje Torre Security atendiendo teléfono" loading="lazy">
+      </div>
+      <div class="img-wrap">
+        <span class="img-rec"></span>
+        <span class="img-label">CAM 02 · Monitoreo</span>
+        <img src="monitoreo-2.jpg" alt="Central de monitoreo CCTV Torre Security" loading="lazy">
+      </div>
+      <div class="img-wrap">
+        <span class="img-rec"></span>
+        <span class="img-label">CAM 03 · Ronda</span>
+        <img src="ronda.jpg" alt="Personal de rondas Torre Security" loading="lazy">
+      </div>
+      <div class="img-wrap">
+        <span class="img-rec"></span>
+        <span class="img-label">CAM 04 · Recepción</span>
+        <img src="conserje-casilleros.jpg" alt="Conserje Torre Security en recepción" loading="lazy">
+      </div>
     </div>
   </div>
 </section>
