@@ -270,7 +270,7 @@ nav.links a:hover::after{width:100%;}
 }
 .hero-video video{
   width:100%;height:100%;object-fit:cover;
-  opacity:.15;filter:brightness(.8);
+  opacity:.35;filter:brightness(.9);
 }
 .hero-video::after{
   content:"";position:absolute;inset:0;
@@ -1014,7 +1014,6 @@ body:hover .cursor-glow{opacity:1;}
       <source src="hero-video.mp4" type="video/mp4">
     </video>
   </div>
-  <div class="particles" id="particles"></div>
   <div class="hero-bg-text">SEGURIDAD</div>
   <div class="hero-inner">
     <div class="hero-content">
@@ -1480,22 +1479,6 @@ window.addEventListener('scroll', () => {
   const progress = scrollTop / docHeight;
   document.getElementById('scrollProgress').style.transform = `scaleX(${progress})`;
 }, { passive: true });
-
-// Particles
-function createParticles() {
-  const container = document.getElementById('particles');
-  if (!container) return;
-  for (let i = 0; i < 30; i++) {
-    const p = document.createElement('div');
-    p.className = 'particle';
-    p.style.left = Math.random() * 100 + '%';
-    p.style.animationDuration = (Math.random() * 8 + 6) + 's';
-    p.style.animationDelay = (Math.random() * 5) + 's';
-    p.style.width = p.style.height = (Math.random() * 3 + 1) + 'px';
-    container.appendChild(p);
-  }
-}
-createParticles();
 
 // Parallax on scroll
 window.addEventListener('scroll', () => {
