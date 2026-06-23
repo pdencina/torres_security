@@ -252,6 +252,17 @@ nav.links a:hover::after{width:100%;}
 .hero .badge-live{animation:heroFadeIn .8s var(--ease) .1s both;}
 @keyframes heroSlideUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:none;}}
 @keyframes heroFadeIn{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+.text-highlight{
+  color:var(--white);font-weight:700;
+  background:linear-gradient(90deg,transparent 0%,rgba(192,200,212,.15) 50%,transparent 100%);
+  background-size:200% 100%;
+  animation:shimmer 3s ease-in-out 2s infinite;
+  padding:2px 4px;border-radius:3px;
+}
+@keyframes shimmer{
+  0%{background-position:200% 0;}
+  100%{background-position:-200% 0;}
+}
 
 /* Stats strip */
 .stat-strip{margin-top:80px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
@@ -787,7 +798,7 @@ footer{background:var(--ink-deep);border-top:1px solid rgba(255,255,255,.06);pad
     <div class="hero-content">
       <div class="badge-live reveal"><span class="dot-live"></span> <b>Empresa certificada OS-10</b> &middot; Prevencionista de riesgos especialista</div>
       <h1 class="reveal reveal-delay-1">Certificados OS-10. Prevencionista especialista.<br><em>Cotiza tu levantamiento.</em></h1>
-      <p class="sub reveal reveal-delay-2">Somos una empresa de seguridad certificada OS-10. Contamos con un <strong style="color:var(--white);">experto en prevención de riesgos y asesor en seguridad privada acreditado</strong>. Te ayudamos a tramitar la directiva de funcionamiento de tu instalación. Cotiza tu levantamiento sin compromiso.</p>
+      <p class="sub reveal reveal-delay-2">Somos una empresa de seguridad certificada OS-10. Contamos con un <strong class="text-highlight">experto en prevención de riesgos y asesor en seguridad privada acreditado</strong>. Te ayudamos a tramitar la <strong class="text-highlight">directiva de funcionamiento</strong> de tu instalación. Cotiza tu levantamiento sin compromiso.</p>
       <div class="cta-row reveal reveal-delay-3">
         <a href="#contacto" class="btn btn-primary">
           Solicitar cotización
