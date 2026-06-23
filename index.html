@@ -326,6 +326,10 @@ nav.links a:hover::after{width:100%;}
 }
 .svc-row:hover{padding-left:8px;}
 .svc-row .ico{width:28px;height:28px;color:var(--accent-dim);margin-top:2px;}
+.svc-num{
+  font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;
+  color:var(--steel);margin-top:4px;
+}
 .svc-row h3{font-family:'Inter',sans-serif;font-size:17px;font-weight:700;letter-spacing:0;}
 .svc-row p{margin-top:6px;font-size:14.5px;color:var(--steel-dim);max-width:600px;line-height:1.65;}
 
@@ -458,6 +462,24 @@ nav.links a:hover::after{width:100%;}
 .cta-banner .eyebrow{justify-content:center;}
 .cta-banner h2{font-size:clamp(30px,4.5vw,52px);margin-top:22px;max-width:700px;margin-left:auto;margin-right:auto;}
 .cta-banner .cta-row{display:flex;justify-content:center;gap:16px;margin-top:40px;flex-wrap:wrap;}
+
+/* === FAQ === */
+.faq{background:var(--paper);color:var(--ink);padding:clamp(80px,12vw,140px) 0;}
+.faq-grid{max-width:720px;}
+.faq-item{border-bottom:1px solid var(--line-dark);padding:0;}
+.faq-item summary{
+  padding:22px 0;font-size:16px;font-weight:600;cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;
+  list-style:none;transition:color .2s var(--ease);
+}
+.faq-item summary::-webkit-details-marker{display:none;}
+.faq-item summary::after{
+  content:"+";font-size:22px;font-weight:300;color:var(--steel);
+  transition:transform .3s var(--ease);
+}
+.faq-item[open] summary::after{transform:rotate(45deg);}
+.faq-item summary:hover{color:var(--navy);}
+.faq-item .faq-answer{padding:0 0 22px;font-size:15px;color:var(--steel-dim);line-height:1.7;}
 
 /* === CONTACT === */
 .contact{background:var(--ink);padding:clamp(80px,12vw,140px) 0;}
@@ -808,10 +830,10 @@ footer{background:var(--ink-deep);border-top:1px solid rgba(255,255,255,.06);pad
       </div>
     </div>
     <div class="stat-strip">
-      <div class="stat-card reveal"><div class="num">12+</div><div class="label">Años operando en Chile</div></div>
-      <div class="stat-card reveal reveal-delay-1"><div class="num">150+</div><div class="label">Guardias activos en terreno</div></div>
-      <div class="stat-card reveal reveal-delay-2"><div class="num">24/7</div><div class="label">Central de monitoreo</div></div>
-      <div class="stat-card reveal reveal-delay-3"><div class="num">&lt;15min</div><div class="label">Respuesta promedio RM</div></div>
+      <div class="stat-card reveal"><div class="num">OS-10</div><div class="label">Personal 100% certificado</div></div>
+      <div class="stat-card reveal reveal-delay-1"><div class="num">24/7</div><div class="label">Supervisión en terreno</div></div>
+      <div class="stat-card reveal reveal-delay-2"><div class="num">RM</div><div class="label">Cobertura Metropolitana</div></div>
+      <div class="stat-card reveal reveal-delay-3"><div class="num">&lt;15min</div><div class="label">Respuesta promedio</div></div>
     </div>
   </div>
 </section>
@@ -860,19 +882,19 @@ footer{background:var(--ink-deep);border-top:1px solid rgba(255,255,255,.06);pad
 
     <div class="svc-compact">
       <div class="svc-row reveal">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
+        <span class="svc-num">/01</span>
         <div><h3>Conserjería y control de acceso</h3><p>Recepción, registro de visitas y monitoreo de ingresos y salidas en edificios y condominios.</p></div>
       </div>
       <div class="svc-row reveal">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 12c0-4 3-7 7-7M20 12c0 4-3 7-7 7M4 12h4M16 12h4"/><circle cx="8" cy="12" r="1.4" fill="currentColor" stroke="none"/><circle cx="16" cy="12" r="1.4" fill="currentColor" stroke="none"/></svg>
+        <span class="svc-num">/02</span>
         <div><h3>Rondas y patrullaje</h3><p>Recorridos programados y aleatorios con registro QR y reporte fotográfico en tiempo real.</p></div>
       </div>
       <div class="svc-row reveal">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3 9h18M9 5v-1.5M15 5v-1.5"/></svg>
+        <span class="svc-num">/03</span>
         <div><h3>Seguridad para eventos corporativos</h3><p>Control de acceso y resguardo para lanzamientos, activaciones de marca, reuniones ejecutivas y eventos privados de menor escala.</p></div>
       </div>
       <div class="svc-row reveal">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="6" width="13" height="10" rx="1.5"/><path d="M16 10l5-2.5v9L16 14"/></svg>
+        <span class="svc-num">/04</span>
         <div><h3>Prevención de riesgos y directiva de funcionamiento</h3><p>Prevencionista especialista en terreno. Te ayudamos a tramitar la directiva de funcionamiento de tu instalación, requisito exigido en múltiples recintos.</p></div>
       </div>
     </div>
@@ -1043,13 +1065,49 @@ footer{background:var(--ink-deep);border-top:1px solid rgba(255,255,255,.06);pad
   <div class="cta-banner-bg"></div>
   <div class="wrap reveal">
     <span class="eyebrow">Siguiente paso</span>
-    <h2>¿Listo para que tu instalación tenga presencia real?</h2>
+    <h2>Protege lo que importa. Cotiza hoy.</h2>
     <div class="cta-row">
       <a href="#contacto" class="btn btn-primary">
         Solicitar cotización
         <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
       <a href="#contacto" class="btn btn-ghost">Hablar con un asesor</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Preguntas frecuentes</span>
+      <h2>Lo que necesitas saber</h2>
+    </div>
+    <div class="faq-grid">
+      <details class="faq-item reveal">
+        <summary>¿Qué es la certificación OS-10?</summary>
+        <div class="faq-answer">La credencial OS-10 es otorgada por Carabineros de Chile y acredita que el personal de seguridad ha sido capacitado, evaluado y autorizado para ejercer labores de vigilancia privada. Todo nuestro personal cuenta con esta certificación vigente.</div>
+      </details>
+      <details class="faq-item reveal">
+        <summary>¿Qué es la directiva de funcionamiento?</summary>
+        <div class="faq-answer">Es un documento exigido por la autoridad para que una instalación pueda operar con servicios de seguridad privada. En Torre Security te ayudamos a tramitarla completa, sin que tengas que preocuparte del proceso.</div>
+      </details>
+      <details class="faq-item reveal">
+        <summary>¿Qué zonas cubre Torre Security?</summary>
+        <div class="faq-answer">Operamos en toda la Región Metropolitana: Las Condes, Providencia, Vitacura, Ñuñoa, Santiago Centro, Maipú, La Florida, Puente Alto, Lo Barnechea, Huechuraba y más. También evaluamos cobertura en otras regiones bajo consulta.</div>
+      </details>
+      <details class="faq-item reveal">
+        <summary>¿Cuánto demora la implementación del servicio?</summary>
+        <div class="faq-answer">Desde el diagnóstico en terreno hasta el primer turno operativo, el proceso toma entre 5 y 10 días hábiles dependiendo de la complejidad de la instalación.</div>
+      </details>
+      <details class="faq-item reveal">
+        <summary>¿Puedo contratar solo turnos nocturnos?</summary>
+        <div class="faq-answer">Sí, nos adecuamos a tu necesidad. Puedes contratar turnos de 8, 12 o 24 horas, solo noche, solo día, o cobertura completa 24/7.</div>
+      </details>
+      <details class="faq-item reveal">
+        <summary>¿Cuánto cuesta el servicio de seguridad?</summary>
+        <div class="faq-answer">El costo depende de la cantidad de guardias, turnos, implementos y el tipo de instalación. Cotiza sin compromiso y te entregamos una propuesta detallada en 24 horas hábiles.</div>
+      </details>
     </div>
   </div>
 </section>
