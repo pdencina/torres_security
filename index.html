@@ -252,6 +252,29 @@ nav.links a:hover::after{width:100%;}
 .hero .badge-live{animation:heroFadeIn .8s var(--ease) .1s both;}
 @keyframes heroSlideUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:none;}}
 @keyframes heroFadeIn{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+
+/* === HERO BG TEXT WATERMARK === */
+.hero-bg-text{
+  position:absolute;bottom:-10px;right:-10px;z-index:1;
+  font-family:'Playfair Display',serif;font-size:clamp(80px,14vw,180px);
+  font-weight:900;color:rgba(255,255,255,.025);letter-spacing:-.02em;
+  line-height:.85;text-transform:uppercase;pointer-events:none;
+  white-space:nowrap;user-select:none;
+}
+
+/* === HERO VIDEO BG === */
+.hero-video{
+  position:absolute;inset:0;z-index:0;overflow:hidden;
+}
+.hero-video video{
+  width:100%;height:100%;object-fit:cover;
+  opacity:.15;filter:brightness(.8);
+}
+.hero-video::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(10,22,40,.7) 0%,rgba(10,22,40,.9) 100%);
+}
+
 .text-highlight{
   color:var(--white);font-weight:700;
   background:linear-gradient(90deg,transparent 0%,rgba(192,200,212,.15) 50%,transparent 100%);
@@ -816,6 +839,12 @@ footer{background:var(--ink-deep);border-top:1px solid rgba(255,255,255,.06);pad
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
+  <div class="hero-video">
+    <video autoplay muted loop playsinline poster="logo.png">
+      <source src="https://videos.pexels.com/video-files/3205918/3205918-uhd_2560_1440_25fps.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-bg-text">SEGURIDAD</div>
   <div class="hero-inner">
     <div class="hero-content">
       <div class="badge-live reveal"><span class="dot-live"></span> <b>Empresa certificada OS-10</b> &middot; Prevencionista de riesgos especialista</div>
