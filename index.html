@@ -658,6 +658,39 @@ footer{background:var(--ink-deep);border-top:1px solid rgba(255,255,255,.06);pad
   .brand-logo svg{width:18px;height:18px;}
   .nav-inner{height:64px;}
 }
+/* === LOADER === */
+.loader{
+  position:fixed;inset:0;z-index:9999;
+  background:var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity .6s ease, visibility .6s ease;
+}
+.loader.done{opacity:0;visibility:hidden;pointer-events:none;}
+.loader-content{text-align:center;}
+.loader-shield{width:80px;height:96px;margin:0 auto;}
+.shield-path{
+  stroke-dasharray:300;stroke-dashoffset:300;
+  animation:drawShield 1.4s ease forwards;
+}
+.check-path{
+  stroke-dasharray:60;stroke-dashoffset:60;
+  animation:drawCheck .6s ease forwards 1.2s;
+}
+@keyframes drawShield{
+  to{stroke-dashoffset:0;}
+}
+@keyframes drawCheck{
+  to{stroke-dashoffset:0;}
+}
+.loader-text{
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.3em;
+  color:var(--accent);margin-top:20px;opacity:0;
+  animation:fadeText .5s ease forwards .8s;
+}
+@keyframes fadeText{
+  to{opacity:1;}
+}
+
 @media(max-width:360px){
   .hero h1{font-size:26px;}
   .hero .sub{font-size:14px;}
@@ -672,6 +705,23 @@ footer{background:var(--ink-deep);border-top:1px solid rgba(255,255,255,.06);pad
 <noscript><style>.reveal{opacity:1!important;transform:none!important;}</style></noscript>
 </head>
 <body>
+
+<!-- LOADER INTRO -->
+<div class="loader" id="loader">
+  <div class="loader-content">
+    <svg class="loader-shield" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="shield-path" d="M50 8L12 25v30c0 28 16 52 38 57 22-5 38-29 38-57V25L50 8z" stroke="url(#goldGrad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <path class="check-path" d="M35 60l12 12 18-24" stroke="url(#goldGrad)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <defs>
+        <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#ddb966"/>
+          <stop offset="100%" stop-color="#c8a455"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    <p class="loader-text">TORRE SECURITY</p>
+  </div>
+</div>
 
 <!-- NAV -->
 <header class="nav" id="top">
@@ -1101,6 +1151,13 @@ footer{background:var(--ink-deep);border-top:1px solid rgba(255,255,255,.06);pad
 
 <!-- SCRIPTS -->
 <script>
+// Loader
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('done');
+  }, 2400);
+});
+
 // Scroll reveal animations
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
