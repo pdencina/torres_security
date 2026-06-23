@@ -260,7 +260,9 @@ nav.links a:hover::after{width:100%;}
   font-weight:900;color:rgba(255,255,255,.025);letter-spacing:-.02em;
   line-height:.85;text-transform:uppercase;pointer-events:none;
   white-space:nowrap;user-select:none;
+  animation:floatText 8s ease-in-out infinite;
 }
+@keyframes floatText{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
 
 /* === HERO VIDEO BG === */
 .hero-video{
@@ -274,6 +276,67 @@ nav.links a:hover::after{width:100%;}
   content:"";position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(10,22,40,.7) 0%,rgba(10,22,40,.9) 100%);
 }
+
+/* === PARTICLES === */
+.particles{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;}
+.particle{
+  position:absolute;width:2px;height:2px;background:rgba(255,255,255,.3);border-radius:50%;
+  animation:particleFloat linear infinite;
+}
+@keyframes particleFloat{
+  0%{transform:translateY(100vh) scale(0);opacity:0;}
+  10%{opacity:1;}
+  90%{opacity:1;}
+  100%{transform:translateY(-100px) scale(1);opacity:0;}
+}
+
+/* === PARALLAX SECTION DIVIDERS === */
+.section-divider{
+  height:4px;background:linear-gradient(90deg,transparent,var(--silver),transparent);
+  opacity:.2;margin:0;border:none;
+}
+
+/* === TILT CARDS === */
+.tilt-card{transition:transform .4s var(--ease),box-shadow .4s var(--ease);}
+
+/* === GLOWING BORDER ANIMATION === */
+.glow-border{position:relative;overflow:hidden;}
+.glow-border::before{
+  content:"";position:absolute;inset:-2px;z-index:-1;
+  background:conic-gradient(from 0deg,transparent,rgba(192,200,212,.3),transparent,rgba(192,200,212,.3),transparent);
+  animation:rotateBorder 4s linear infinite;border-radius:inherit;
+}
+@keyframes rotateBorder{to{transform:rotate(360deg);}}
+
+/* === TYPING CURSOR === */
+.typing-cursor::after{
+  content:"|";animation:blink 1s step-end infinite;color:var(--silver);margin-left:2px;
+}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+
+/* === SCROLL PROGRESS BAR === */
+.scroll-progress{
+  position:fixed;top:0;left:0;height:3px;z-index:200;
+  background:linear-gradient(90deg,var(--navy),var(--silver));
+  transform-origin:left;transform:scaleX(0);
+  transition:transform .1s linear;
+}
+
+/* === HOVER LIFT FOR ALL CARDS === */
+.stat-card,.sector,.testi-card,.info-card,.form-card{
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease);
+}
+
+/* === MARQUEE TEXT === */
+.marquee-wrap{overflow:hidden;padding:20px 0;background:var(--navy);border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);}
+.marquee{
+  display:flex;gap:60px;animation:marqueeScroll 20s linear infinite;white-space:nowrap;
+}
+.marquee span{
+  font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.1em;
+  color:rgba(255,255,255,.4);text-transform:uppercase;font-weight:500;
+}
+@keyframes marqueeScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 
 .text-highlight{
   color:var(--white);font-weight:700;
@@ -782,6 +845,7 @@ footer{background:var(--ink-deep);border-top:1px solid rgba(255,255,255,.06);pad
 <body>
 
 <!-- LOADER INTRO -->
+<div class="scroll-progress" id="scrollProgress"></div>
 <div class="loader" id="loader">
   <div class="loader-content">
     <svg class="loader-shield" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -844,6 +908,7 @@ footer{background:var(--ink-deep);border-top:1px solid rgba(255,255,255,.06);pad
       <source src="https://videos.pexels.com/video-files/3205918/3205918-uhd_2560_1440_25fps.mp4" type="video/mp4">
     </video>
   </div>
+  <div class="particles" id="particles"></div>
   <div class="hero-bg-text">SEGURIDAD</div>
   <div class="hero-inner">
     <div class="hero-content">
@@ -879,6 +944,14 @@ footer{background:var(--ink-deep);border-top:1px solid rgba(255,255,255,.06);pad
     </div>
   </div>
 </section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee">
+    <span>Seguridad privada</span><span>OS-10 certificado</span><span>Prevención de riesgos</span><span>Directiva de funcionamiento</span><span>Cobertura 24/7</span><span>Región Metropolitana</span><span>Guardias profesionales</span><span>Eventos corporativos</span>
+    <span>Seguridad privada</span><span>OS-10 certificado</span><span>Prevención de riesgos</span><span>Directiva de funcionamiento</span><span>Cobertura 24/7</span><span>Región Metropolitana</span><span>Guardias profesionales</span><span>Eventos corporativos</span>
+  </div>
+</div>
 
 <!-- SERVICIOS -->
 <section class="feat-service" id="servicios">
@@ -1276,6 +1349,52 @@ window.addEventListener('load', () => {
   setTimeout(() => {
     document.getElementById('loader').classList.add('done');
   }, 2400);
+});
+
+// Scroll progress bar
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = scrollTop / docHeight;
+  document.getElementById('scrollProgress').style.transform = `scaleX(${progress})`;
+}, { passive: true });
+
+// Particles
+function createParticles() {
+  const container = document.getElementById('particles');
+  if (!container) return;
+  for (let i = 0; i < 30; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.animationDuration = (Math.random() * 8 + 6) + 's';
+    p.style.animationDelay = (Math.random() * 5) + 's';
+    p.style.width = p.style.height = (Math.random() * 3 + 1) + 'px';
+    container.appendChild(p);
+  }
+}
+createParticles();
+
+// Parallax on scroll
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  const bgText = document.querySelector('.hero-bg-text');
+  if (bgText) bgText.style.transform = `translateY(${scrolled * 0.3}px)`;
+  const heroBg = document.querySelector('.hero-bg');
+  if (heroBg) heroBg.style.transform = `translateY(${scrolled * 0.15}px)`;
+}, { passive: true });
+
+// Tilt effect on stat cards
+document.querySelectorAll('.stat-card, .sector, .testi-card').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    card.style.transform = `perspective(800px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg) translateY(-4px)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
 });
 
 // Scroll reveal animations
