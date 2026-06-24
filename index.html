@@ -550,37 +550,25 @@ nav.links a:hover::after{width:100%;}
 .cta-banner .cta-row{display:flex;justify-content:center;gap:16px;margin-top:40px;flex-wrap:wrap;}
 
 /* === FAQ === */
-.gallery-grid img{
-  width:100%;height:220px;object-fit:cover;border-radius:var(--r-md);
-  transition:transform .7s var(--ease),filter .4s var(--ease);filter:brightness(.85);
-  position:relative;
+.gallery-grid{
+  display:flex;gap:16px;overflow:hidden;
+  mask-image:linear-gradient(90deg,transparent,black 5%,black 95%,transparent);
+  -webkit-mask-image:linear-gradient(90deg,transparent,black 5%,black 95%,transparent);
 }
-.gallery-grid img:hover{transform:scale(1.08);filter:brightness(1);}
-.gallery-grid .img-wrap{
-  position:relative;overflow:hidden;border-radius:var(--r-md);border:1px solid rgba(255,255,255,.06);
+.gallery-track{
+  display:flex;gap:16px;animation:galleryScroll 25s linear infinite;
+  width:max-content;
 }
-.gallery-grid .img-wrap::after{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.03) 2px,rgba(0,0,0,.03) 4px);
-  mix-blend-mode:overlay;
+.gallery-track:hover{animation-play-state:paused;}
+.gallery-track img{
+  width:280px;height:220px;object-fit:cover;border-radius:var(--r-md);
+  flex:none;transition:transform .4s var(--ease),filter .3s var(--ease);
+  filter:brightness(.9);
 }
-.gallery-grid .img-wrap::before{
-  content:"";position:absolute;top:0;left:0;right:0;height:2px;
-  background:rgba(255,255,255,.4);z-index:2;
-  animation:scanline 3s linear infinite;
-}
-@keyframes scanline{0%{top:0;}100%{top:100%;}}
-.gallery-grid .img-label{
-  position:absolute;bottom:12px;left:12px;z-index:3;
-  font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--white);background:rgba(10,22,40,.7);
-  padding:5px 10px;border-radius:4px;backdrop-filter:blur(4px);
-}
-.gallery-grid .img-rec{
-  position:absolute;top:10px;right:10px;z-index:3;
-  width:8px;height:8px;border-radius:50%;background:#e74c3c;
-  animation:pulse 2s infinite;
-}
+.gallery-track img:hover{transform:scale(1.04);filter:brightness(1);}
+@keyframes galleryScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+@media(max-width:768px){.gallery-track img{width:220px;height:170px;}}
+@media(max-width:480px){.gallery-track img{width:180px;height:140px;}}
 
 .faq{background:var(--paper);color:var(--ink);padding:clamp(80px,12vw,140px) 0;}
 .faq-grid{max-width:720px;}
@@ -1116,25 +1104,26 @@ body:hover .cursor-glow{opacity:1;}
       <h2>Personal real, presencia real</h2>
     </div>
     <div class="gallery-grid reveal">
-      <div class="img-wrap">
-        <span class="img-rec"></span>
-        <span class="img-label">CAM 01 · Conserjería</span>
-        <img src="conserje-telefono.jpg" alt="Conserje Torre Security atendiendo teléfono" loading="lazy">
-      </div>
-      <div class="img-wrap">
-        <span class="img-rec"></span>
-        <span class="img-label">CAM 02 · Monitoreo</span>
-        <img src="monitoreo-2.jpg" alt="Central de monitoreo CCTV Torre Security" loading="lazy">
-      </div>
-      <div class="img-wrap">
-        <span class="img-rec"></span>
-        <span class="img-label">CAM 03 · Constructora Carrán</span>
-        <img src="obra-1.jpg" alt="Guardia Torre Security en obra Constructora Carrán" loading="lazy">
-      </div>
-      <div class="img-wrap">
-        <span class="img-rec"></span>
-        <span class="img-label">CAM 04 · Constructora Carrán</span>
-        <img src="obra-3.jpg" alt="Guardia Torre Security en terreno obra" loading="lazy">
+      <div class="gallery-track">
+        <img src="conserje-telefono.jpg" alt="Conserje Torre Security" loading="lazy">
+        <img src="monitoreo-2.jpg" alt="Central de monitoreo CCTV" loading="lazy">
+        <img src="obra-1.jpg" alt="Guardia en obra Constructora Carrán" loading="lazy">
+        <img src="obra-3.jpg" alt="Guardia en terreno Constructora Carrán" loading="lazy">
+        <img src="guardia-1.jpg" alt="Guardia Torre Security" loading="lazy">
+        <img src="ronda.jpg" alt="Personal de rondas" loading="lazy">
+        <img src="conserje-casilleros.jpg" alt="Conserje en recepción" loading="lazy">
+        <img src="monitoreo-1.jpg" alt="Monitoreo CCTV" loading="lazy">
+        <img src="obra-2.jpg" alt="Personal en obra" loading="lazy">
+        <!-- duplicado para loop infinito -->
+        <img src="conserje-telefono.jpg" alt="Conserje Torre Security" loading="lazy">
+        <img src="monitoreo-2.jpg" alt="Central de monitoreo CCTV" loading="lazy">
+        <img src="obra-1.jpg" alt="Guardia en obra Constructora Carrán" loading="lazy">
+        <img src="obra-3.jpg" alt="Guardia en terreno Constructora Carrán" loading="lazy">
+        <img src="guardia-1.jpg" alt="Guardia Torre Security" loading="lazy">
+        <img src="ronda.jpg" alt="Personal de rondas" loading="lazy">
+        <img src="conserje-casilleros.jpg" alt="Conserje en recepción" loading="lazy">
+        <img src="monitoreo-1.jpg" alt="Monitoreo CCTV" loading="lazy">
+        <img src="obra-2.jpg" alt="Personal en obra" loading="lazy">
       </div>
     </div>
   </div>
@@ -1692,31 +1681,6 @@ if (badge) {
   }, 2600);
 }
 
-// === INTERSECTION STAGGER FOR GALLERY ===
-const galleryObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const items = entry.target.querySelectorAll('.img-wrap');
-      items.forEach((item, i) => {
-        setTimeout(() => {
-          item.style.opacity = '1';
-          item.style.transform = 'translateY(0)';
-        }, i * 150);
-      });
-      galleryObserver.disconnect();
-    }
-  });
-}, { threshold: 0.2 });
-
-const galleryGrid = document.querySelector('.gallery-grid');
-if (galleryGrid) {
-  galleryGrid.querySelectorAll('.img-wrap').forEach(item => {
-    item.style.opacity = '0';
-    item.style.transform = 'translateY(20px)';
-    item.style.transition = 'all .6s var(--ease)';
-  });
-  galleryObserver.observe(galleryGrid);
-}
 </script>
 
 </body>
