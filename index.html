@@ -552,23 +552,23 @@ nav.links a:hover::after{width:100%;}
 /* === FAQ === */
 .gallery-grid{
   display:flex;gap:16px;overflow:hidden;
-  mask-image:linear-gradient(90deg,transparent,black 5%,black 95%,transparent);
-  -webkit-mask-image:linear-gradient(90deg,transparent,black 5%,black 95%,transparent);
+  mask-image:linear-gradient(90deg,transparent,black 3%,black 97%,transparent);
+  -webkit-mask-image:linear-gradient(90deg,transparent,black 3%,black 97%,transparent);
 }
 .gallery-track{
-  display:flex;gap:16px;animation:galleryScroll 25s linear infinite;
+  display:flex;gap:16px;animation:galleryScroll 40s linear infinite;
   width:max-content;
 }
 .gallery-track:hover{animation-play-state:paused;}
 .gallery-track img{
-  width:280px;height:220px;object-fit:cover;border-radius:var(--r-md);
+  width:320px;height:280px;object-fit:cover;border-radius:var(--r-md);
   flex:none;transition:transform .4s var(--ease),filter .3s var(--ease);
   filter:brightness(.9);
 }
 .gallery-track img:hover{transform:scale(1.04);filter:brightness(1);}
 @keyframes galleryScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
-@media(max-width:768px){.gallery-track img{width:220px;height:170px;}}
-@media(max-width:480px){.gallery-track img{width:180px;height:140px;}}
+@media(max-width:768px){.gallery-track img{width:260px;height:220px;}}
+@media(max-width:480px){.gallery-track img{width:220px;height:180px;}}
 
 .faq{background:var(--paper);color:var(--ink);padding:clamp(80px,12vw,140px) 0;}
 .faq-grid{max-width:720px;}
