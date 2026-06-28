@@ -114,7 +114,8 @@
 html{scroll-behavior:smooth;scroll-padding-top:80px;}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto;}
-  *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;}
+  *{transition-duration:.001ms!important;}
+  .gallery-track{animation:galleryScroll 60s linear infinite!important;}
 }
 body{
   background:var(--ink);color:var(--white);
@@ -1602,6 +1603,26 @@ if (telInput) {
     let val = this.value.replace(/[^\d+]/g, '');
     this.value = val;
   });
+}
+
+// Gallery scroll fallback (JS-driven for compatibility)
+const galleryTrack = document.querySelector('.gallery-track');
+if (galleryTrack) {
+  galleryTrack.style.animation = 'none';
+  let pos = 0;
+  let paused = false;
+  const speed = 0.5;
+  function scrollGallery() {
+    if (!paused) {
+      pos -= speed;
+      if (Math.abs(pos) >= galleryTrack.scrollWidth / 2) pos = 0;
+      galleryTrack.style.transform = `translateX(${pos}px)`;
+    }
+    requestAnimationFrame(scrollGallery);
+  }
+  requestAnimationFrame(scrollGallery);
+  galleryTrack.addEventListener('mouseenter', () => { paused = true; });
+  galleryTrack.addEventListener('mouseleave', () => { paused = false; });
 }
 
 // Current year in footer
